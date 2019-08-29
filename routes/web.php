@@ -18,3 +18,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// User
+Route::group(['middleware' => 'auth', 'prefix' => 'users', 'as' => 'user.'], function () {
+    Route::get('edit', 'UserController@edit')->name('edit');
+    Route::patch('update', 'UserController@update')->name('update');
+});
