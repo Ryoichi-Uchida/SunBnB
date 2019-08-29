@@ -2,22 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
-        </div>
-    </div>
+    <h1 class="my-5 text-center">Welcome to Our Page</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi ab, eaque assumenda iste sit repellendus eos rerum voluptatem maxime error impedit doloremque rem architecto nesciunt iure ullam ex? Doloremque, ab.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi ab, eaque assumenda iste sit repellendus eos rerum voluptatem maxime error impedit doloremque rem architecto nesciunt iure ullam ex? Doloremque, ab.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi ab, eaque assumenda iste sit repellendus eos rerum voluptatem maxime error impedit doloremque rem architecto nesciunt iure ullam ex? Doloremque, ab.</p>
 </div>
 @endsection
