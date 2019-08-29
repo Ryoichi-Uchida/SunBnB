@@ -11,14 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
-
 Auth::routes();
 
 // Page
-Route::get('/home', 'PageController@index')->name('index');
+Route::get('/', 'PageController@index')->name('index');
 
 // User
 Route::group(['middleware' => 'auth', 'prefix' => 'users', 'as' => 'user.'], function () {
