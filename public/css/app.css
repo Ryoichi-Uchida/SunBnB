@@ -10644,6 +10644,29 @@ a.text-dark:focus {
   }
 }
 
+.btn-normal {
+  height: 50px;
+  width: 100%;
+}
+
+.text-main {
+  color: #48b5a1;
+}
+
+.bg-main {
+  color: white;
+  background-color: #48b5a1;
+}
+
+.bg-facebook {
+  color: white;
+  background-color: #3b5998;
+}
+
+.text-menu {
+  color: #86b1f0;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
