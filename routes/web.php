@@ -11,10 +11,10 @@
 |
 */
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // Page
-Route::get('/', 'PageController@index')->name('index');
+Route::get('/', 'PageController@index')->name('index')->middleware('verified');
 
 // User
 Route::group(['middleware' => 'auth', 'prefix' => 'users', 'as' => 'user.'], function () {
