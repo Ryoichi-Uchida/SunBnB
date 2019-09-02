@@ -15,7 +15,6 @@ class SocialFacebookAccountService
                ->whereProviderUserId($providerUser->getId())
                ->first();
 
-      // #Activity
       // If we found a Social Account
       if(!empty($account)){
          // just return the user of the account
@@ -47,7 +46,6 @@ class SocialFacebookAccountService
          $account->save();
 
          return $user;
-      }
-      
+      }    
    }
 }
