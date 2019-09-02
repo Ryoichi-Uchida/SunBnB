@@ -13,6 +13,9 @@
 
 Auth::routes(['verify' => true]);
 
+Route::get('/auth/redirect/{provider}','SocialAuthController@redirect')->name('redirect');
+Route::get('/callback/{provider}','SocialAuthController@callback')->name('callback');
+
 // Page
 Route::get('/', 'PageController@index')->name('index')->middleware('verified');
 

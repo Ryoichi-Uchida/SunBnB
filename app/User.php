@@ -42,4 +42,9 @@ class User extends Authenticatable implements MustVerifyEmail
         
         return "http://www.gravatar.com/avatar/$hash?s=$size";
     }
+
+    public function socialAccount()
+    {
+        return $this->hasOne('App\SocialAccount');
+    }
 }

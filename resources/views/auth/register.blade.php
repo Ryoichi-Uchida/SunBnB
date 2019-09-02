@@ -37,10 +37,10 @@
 
                     {{-- For facebook --}}
                     <div>
-                        <button class="btn btn-normal bg-facebook my-3">
+                        <a href="{{ route('redirect', ['provider' => 'facebook']) }}" class="btn btn-normal bg-facebook my-3 d-flex align-content-centerd-flex align-content-center flex-wrap justify-content-center">
                             <i class="fab fa-facebook-square fa-lg"></i>
-                            <span class="h5 pl-2">Sign in with Facebook</span>
-                        </button>
+                            <span class="h5 pl-2 mb-0">Sign in with Facebook</span>
+                        </a>
                     </div>
 
                 </div>
