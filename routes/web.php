@@ -17,7 +17,7 @@ Auth::routes(['verify' => true]);
 Route::get('/', 'PageController@index')->name('index')->middleware('verified');
 
 // User
-Route::group(['middleware' => 'auth', 'prefix' => 'users', 'as' => 'user.'], function () {
+Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'users', 'as' => 'user.'], function () {
     Route::get('edit', 'UserController@edit')->name('edit');
     Route::patch('update', 'UserController@update')->name('update');
 });
