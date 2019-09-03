@@ -9,7 +9,7 @@
                 <span class="h3">Profile Update</span>
             </div>
             <div class="h3 py-2 text-right">
-                <a href="{{ route('user.show') }}" class="btn btn-mini bg-main w-100">View my profile</a>
+                <a href="{{ route('user.show') }}" class="btn btn-base btn-size-mini btn-color-main w-100">View my profile</a>
             </div>
         </div>
 
@@ -30,31 +30,19 @@
                                 @method('PATCH')
                                 @csrf
                                 <div class="form-group">
-                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') != null ? old('name') : Auth::user()->name }}" required>
+                                    <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') ?? Auth::user()->name }}" required>
                                     @include('partials.error_message', ['error' => 'name'])
                                 </div>
                                 <div class="form-group">
-                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') != null ? old('email') : Auth::user()->email }}" required>
+                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') ?? Auth::user()->email }}" required>
                                     @include('partials.error_message', ['error' => 'email'])
                                 </div>
                                 <div class="form-group">
-                                    @if(old('phone'))
-                                        <input id="phone" type="tel" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" placeholder="Phone No">
-                                    @elseif(!empty(Auth::user()->phone))
-                                        <input id="phone" type="tel" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ Auth::user()->getPhoneNumber(Auth::user()->phone) }}" placeholder="Phone No">
-                                    @else
-                                        <input id="phone" type="tel" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ "" }}" placeholder="Phone No">    
-                                    @endif
+                                    <input id="phone" type="tel" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') ?? Auth::user()->getPhoneNumber() }}" placeholder="Phone No">
                                     @include('partials.error_message', ['error' => 'phone'])
                                 </div>
                                 <div class="form-group">
-                                    @if(old('description'))
-                                        <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" cols="10" rows="10" placeholder="Please put some information">{{ old('description') }}</textarea>
-                                    @elseif(!empty(Auth::user()->description))
-                                        <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" cols="10" rows="10" placeholder="Please put some information">{{ Auth::user()->description }}</textarea>
-                                    @else
-                                        <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" cols="10" rows="10" placeholder="Please put some information">{{ "" }}</textarea>
-                                    @endif
+                                    <textarea id="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" name="description" cols="10" rows="10" placeholder="Please put some information">{{ old('description') ?? Auth::user()->description }}</textarea>
                                     @include('partials.error_message', ['error' => 'description'])
                                 </div>
                                 <div class="form-grouｐ">
@@ -66,7 +54,7 @@
                                     @include('partials.error_message', ['error' => 'password_confirm'])                           
                                 </div>
                                 <div class="form-grouｐ mt-5">
-                                    <button type="submit" class="btn btn-normal bg-main mb-3"><span class="h5">Update</span></button>
+                                    <button type="submit" class="btn btn-base btn-size-big btn-color-main mb-3"><span class="h5">Update</span></button>
                                 </div>
                             </form>
 

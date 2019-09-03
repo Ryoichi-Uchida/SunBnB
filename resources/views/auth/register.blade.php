@@ -31,13 +31,13 @@
                             @include('partials.error_message', ['error' => 'password_confirm'])                           
                         </div>
                         <div class="form-grouｐ mt-3 border-bottom">
-                            <button type="submit" class="btn btn-normal mb-3"><span class="h5">Sign-up</span></button>
+                            <button type="submit" class="btn btn-base btn-size-big btn-color-main mb-3"><span class="h5">Sign-up</span></button>
                         </div>
                     </form>
 
                     {{-- For facebook --}}
                     <div>
-                        <a href="{{ route('redirect', ['provider' => 'facebook']) }}" class="btn btn-facebook my-3 d-flex align-content-centerd-flex align-content-center flex-wrap justify-content-center">
+                        <a href="{{ route('redirect', ['provider' => 'facebook']) }}" class="btn btn-base btn-size-big btn-color-facebook my-3 d-flex align-content-centerd-flex align-content-center flex-wrap justify-content-center">
                             <i class="fab fa-facebook-square fa-lg"></i>
                             <span class="h5 pl-2 mb-0">Sign in with Facebook</span>
                         </a>

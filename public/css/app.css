@@ -10644,61 +10644,39 @@ a.text-dark:focus {
   }
 }
 
-.btn-normal {
-  height: 50px;
-  width: 100%;
+.btn-base {
   color: white;
-  background-color: #48b5a1;
-  box-shadow: 0 4px #218a77;
 }
 
-.btn-normal:hover {
+.btn-base:hover {
   color: white;
   opacity: 0.8;
 }
 
-.btn-normal:active {
+.btn-base:active {
   box-shadow: none;
   position: relative;
   top: 4px;
 }
 
-.btn-facebook {
+.btn-size-big {
   height: 50px;
   width: 100%;
-  color: white;
-  background-color: #3b5998;
-  box-shadow: 0 4px #284074;
 }
 
-.btn-facebook:hover {
-  color: white;
-  opacity: 0.8;
-}
-
-.btn-facebook:active {
-  box-shadow: none;
-  position: relative;
-  top: 4px;
-}
-
-.btn-mini {
+.btn-size-mini {
   height: 40px;
   min-width: 70px;
-  color: white;
+}
+
+.btn-color-main {
   background-color: #48b5a1;
   box-shadow: 0 4px #218a77;
 }
 
-.btn-mini:hover {
-  color: white;
-  opacity: 0.8;
-}
-
-.btn-mini:active {
-  box-shadow: none;
-  position: relative;
-  top: 4px;
+.btn-color-facebook {
+  background-color: #3b5998;
+  box-shadow: 0 4px #284074;
 }
 
 .text-main {

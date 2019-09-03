@@ -48,8 +48,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\SocialAccount');
     }
 
-    public function getPhoneNumber($value) 
+    public function getPhoneNumber() 
     {
-        return sprintf("%011d", $value);
+        return sprintf("%011d", $this->phone);
     }
 }
