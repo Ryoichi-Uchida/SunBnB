@@ -47,4 +47,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasOne('App\SocialAccount');
     }
+
+    public function getPhoneNumber($value) 
+    {
+        return sprintf("%011d", $value);
+    }
 }
