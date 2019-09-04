@@ -52,4 +52,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return sprintf("%011d", $this->phone);
     }
+
+    public function rooms()
+    {
+        return $this->hasMany('App\Room');
+    }
 }

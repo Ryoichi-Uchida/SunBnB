@@ -25,3 +25,16 @@ Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'users', 'as' =>
     Route::get('show', 'UserController@show')->name('show');
     Route::patch('update', 'UserController@update')->name('update');
 });
+
+// Room
+Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'rooms', 'as' => 'room.'], function () {
+    Route::get('create', 'RoomController@create')->name('create');
+    Route::post('', 'RoomController@store')->name('store');
+    Route::get('{room}/listing', 'RoomController@listing')->name('listing');
+    Route::get('{room}/pricing', 'RoomController@pricing')->name('pricing');
+    Route::get('{room}/description', 'RoomController@description')->name('description');
+    Route::get('{room}/photo', 'RoomController@photo')->name('photo');
+    Route::get('{room}/amenity', 'RoomController@amenity')->name('amenity');
+    Route::get('{room}/location', 'RoomController@location')->name('location');
+    Route::patch('{room}/update', 'RoomController@update')->name('update');
+});

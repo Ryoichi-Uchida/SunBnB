@@ -52,6 +52,10 @@
                                 </li>
                             @endif
                         @else
+                            <a href="{{ route('room.create') }}" class="btn btn-base btn-size-mini btn-color-main d-flex align-content-centerd-flex align-content-center flex-wrap justify-content-center">
+                                <span class="h5 pl-2 mb-0">Become a host</span>
+                            </a>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if(!empty(Auth::user()->socialAccount->image))
