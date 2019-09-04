@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            @include('partials.room_create_menu')
+            @include('partials.room_menu')
         </div>
         <div class="col-md-9">
             <div class="row">
@@ -18,7 +18,14 @@
                 <div class="col-12">
                     <div class="box-body">
                         <div class="col-10 m-auto">
-                            @include('partials.room_edit_space')
+                            <form action="{{ route('room.update', ['room' => $room->id]) }}" method="post">
+                                @csrf
+                                @method('PATCH')
+                                @include('partials.amenity_choice')
+                                <div class="form-group text-right">
+                                    <button type="submit" class="btn btn-base btn-size-mini btn-color-main w-25">Save</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
                 </div>

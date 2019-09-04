@@ -8,6 +8,11 @@ use App\Room;
 
 class RoomController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
     public function create()
     {
         return view("rooms.create");
@@ -53,30 +58,28 @@ class RoomController extends Controller
     public function update(Request $request, Room $room)
     {
         // For price area
-        if(($request->has('info.price'))){
+        if(($request->has('price'))){
             $request->validate([
-                'info.price' => ['required', 'numeric', 'digits_between:1,10'],
+                'price' => ['numeric', 'digits_between:1,10'],
             ]);
         }
 
         // For description area
-        if(($request->has('info.listing_name'))){
+        if(($request->has('listing_name'))){
             $request->validate([
-                'info.listing_name' => ['required', 'string', 'max:50'],
-                'info.summary' => ['required', 'string', 'min:10', 'max:255'],
+                'listing_name' => ['string', 'max:50'],
+                'summary' => ['nullable', 'string', 'min:10', 'max:255'],
             ]);
         }
 
         // For location area
-        if(($request->has('info.address'))){
+        if(($request->has('address'))){
             $request->validate([
-                'info.address' => ['required', 'string', 'max:255'],
+                'address' => ['string', 'max:255'],
             ]);
         }
 
-        foreach ($request->info as $key => $value) {
-            $room->update([$key => $value]);
-        }
+        $room->update($request->all());
         
         return redirect()->back();
     }

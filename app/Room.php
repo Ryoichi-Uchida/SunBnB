@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Room extends Model
 {
-    protected $guarded = [];
+    protected $guarded = ['user_id'];
 
     public function user()
     {
