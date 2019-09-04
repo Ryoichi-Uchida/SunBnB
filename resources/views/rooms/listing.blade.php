@@ -23,44 +23,44 @@
                                 @method('PATCH')
                                 <div class="row">
                                     <div class="form-group col-12 col-md-6 col-lg-4">
-                                        <label for="home_type" class="">Home Type</label>
-                                        <select name="home_type" id="" class="form-control custom-select" required>
-                                            <option value="Apartment" {{ $room->home_type == 'Apartment' ? 'selected' : "" }}>Apartment</option>
-                                            <option value="House" {{ $room->home_type == 'House' ? 'selected' : "" }}>House</option>
-                                            <option value="Bed & Breakfast" {{ $room->home_type == 'Bed & Breakfast' ? 'selected' : "" }}>Bed & Breakfast</option>
-                                        </select>
+                                        @include('partials.listing_item', [
+                                            'label' => 'Home Type',
+                                            'name' => 'home_type',
+                                            'selected' => $room->home_type,
+                                            'options' => ['Apartment', 'House', 'Bed & Breakfast']
+                                        ])
                                     </div>
                                     <div class="form-group col-12 col-md-6 col-lg-4">
-                                        <label for="room_type" class="">Room Type</label>
-                                        <select name="room_type" id="" class="form-control custom-select" required>
-                                            <option value="Entire" {{ $room->room_type == 'Entire' ? 'selected' : "" }}>Entire</option>
-                                            <option value="Private" {{ $room->room_type == 'Private' ? 'selected' : "" }}>Private</option>
-                                            <option value="Shared" {{ $room->room_type == 'Shared' ? 'selected' : "" }}>Shared</option>
-                                        </select>
+                                        @include('partials.listing_item', [
+                                            'label' => 'Room Type',
+                                            'name' => 'room_type',
+                                            'selected' => $room->room_type,
+                                            'options' => ['Entire', 'Private', 'Shared']
+                                        ])
                                     </div>
                                     <div class="form-group col-12 col-md-6 col-lg-4">
-                                        <label for="accomodate" class="">Accomodate</label>
-                                        <select name="accomodate" id="" class="form-control custom-select" required>
-                                            @for ($i = 1; $i <= 4; $i++)
-                                                <option value="{{ $i }}" {{ $room->accomodate == $i ? 'selected' : "" }}>{{ $i }}</option>
-                                            @endfor
-                                        </select>
+                                        @include('partials.listing_item', [
+                                            'label' => 'Accomodate',
+                                            'name' => 'accomodate',
+                                            'selected' => $room->accomodate,
+                                            'options' => [1, 2, 3, 4]
+                                        ])
                                     </div>
                                     <div class="form-group col-12 col-md-6 col-lg-4">
-                                        <label for="bedroom" class="">Bedrooms</label>
-                                        <select name="bedroom" id="" class="form-control custom-select" required>
-                                            @for ($i = 1; $i <= 4; $i++)
-                                                <option value="{{ $i }}" {{ $room->bedroom == $i ? 'selected' : "" }}>{{ $i }}</option>
-                                            @endfor
-                                        </select>
+                                        @include('partials.listing_item', [
+                                            'label' => 'Bedrooms',
+                                            'name' => 'bedroom',
+                                            'selected' => $room->bedroom,
+                                            'options' => [1, 2, 3, 4]
+                                        ])
                                     </div>
                                     <div class="form-group col-12 col-md-6 col-lg-4">
-                                        <label for="bathroom" class="">Bathrooms</label>
-                                        <select name="bathroom" id="" class="form-control custom-select" required>
-                                            @for ($i = 1; $i <= 4; $i++)
-                                                <option value="{{ $i }}" {{ $room->bathroom == $i ? 'selected' : "" }}>{{ $i }}</option>
-                                            @endfor
-                                        </select>
+                                        @include('partials.listing_item', [
+                                            'label' => 'Bathrooms',
+                                            'name' => 'bathroom',
+                                            'selected' => $room->bathroom,
+                                            'options' => [1, 2, 3, 4]
+                                        ])
                                     </div>
                                 </div>
                                 <div class="form-group text-right">

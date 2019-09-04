@@ -17,49 +17,44 @@
                         @csrf
                         <div class="row">
                             <div class="form-group col-12 col-md-6 col-lg-4">
-                                <label for="home_type" class="">Home Type</label>
-                                <select name="home_type" id="" class="form-control custom-select" required>
-                                    <option value="">Select..</option>
-                                    <option value="Apartment">Apartment</option>
-                                    <option value="House">House</option>
-                                    <option value="Bed & Breakfast">Bed & Breakfast</option>
-                                </select>
+                                @include('partials.listing_item', [
+                                    'label' => 'Home Type',
+                                    'name' => 'home_type',
+                                    'selected' => "",
+                                    'options' => ['Apartment', 'House', 'Bed & Breakfast']
+                                ])
                             </div>
                             <div class="form-group col-12 col-md-6 col-lg-4">
-                                <label for="room_type" class="">Room Type</label>
-                                <select name="room_type" id="" class="form-control custom-select" required>
-                                    <option value="">Select..</option>
-                                    <option value="Entire">Entire</option>
-                                    <option value="Private">Private</option>
-                                    <option value="Shared">Shared</option>
-                                </select>
+                                @include('partials.listing_item', [
+                                    'label' => 'Room Type',
+                                    'name' => 'room_type',
+                                    'selected' => "",
+                                    'options' => ['Entire', 'Private', 'Shared']
+                                ])
                             </div>
                             <div class="form-group col-12 col-md-6 col-lg-4">
-                                <label for="accomodate" class="">Accomodate</label>
-                                <select name="accomodate" id="" class="form-control custom-select" required>
-                                    <option value="">Select..</option>
-                                    @for ($i = 1; $i <= 4; $i++)
-                                        <option value="{{ $i }}">{{ $i }}</option>
-                                    @endfor
-                                </select>
+                                @include('partials.listing_item', [
+                                    'label' => 'Accomodate',
+                                    'name' => 'accomodate',
+                                    'selected' => "",
+                                    'options' => [1, 2, 3, 4]
+                                ])
                             </div>
                             <div class="form-group col-12 col-md-6 col-lg-4">
-                                <label for="bedroom" class="">Bedrooms</label>
-                                <select name="bedroom" id="" class="form-control custom-select" required>
-                                    <option value="">Select..</option>
-                                    @for ($i = 1; $i <= 4; $i++)
-                                        <option value="{{ $i }}">{{ $i }}</option>
-                                    @endfor
-                                </select>
+                                @include('partials.listing_item', [
+                                    'label' => 'Bedrooms',
+                                    'name' => 'bedroom',
+                                    'selected' => "",
+                                    'options' => [1, 2, 3, 4]
+                                ])
                             </div>
                             <div class="form-group col-12 col-md-6 col-lg-4">
-                                <label for="bathroom" class="">Bathrooms</label>
-                                <select name="bathroom" id="" class="form-control custom-select" required>
-                                    <option value="">Select..</option>
-                                    @for ($i = 1; $i <= 4; $i++)
-                                        <option value="{{ $i }}">{{ $i }}</option>
-                                    @endfor
-                                </select>
+                                @include('partials.listing_item', [
+                                    'label' => 'Bathrooms',
+                                    'name' => 'bathroom',
+                                    'selected' => "",
+                                    'options' => [1, 2, 3, 4]
+                                ])
                             </div>
                         </div>
                         <div class="form-group text-right">

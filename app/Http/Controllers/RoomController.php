@@ -22,6 +22,8 @@ class RoomController extends Controller
     {
         $room = Auth::user()->rooms()->create($request->all());
 
+        toastr()->success("Successfully created!");
+
         return redirect()->route("room.listing", compact('room'));
     }
 
@@ -57,27 +59,12 @@ class RoomController extends Controller
 
     public function update(Request $request, Room $room)
     {
-        // For price area
-        if(($request->has('price'))){
-            $request->validate([
-                'price' => ['numeric', 'digits_between:1,10'],
-            ]);
-        }
-
-        // For description area
-        if(($request->has('listing_name'))){
-            $request->validate([
-                'listing_name' => ['string', 'max:50'],
-                'summary' => ['nullable', 'string', 'min:10', 'max:255'],
-            ]);
-        }
-
-        // For location area
-        if(($request->has('address'))){
-            $request->validate([
-                'address' => ['string', 'max:255'],
-            ]);
-        }
+        $request->validate([
+            'price' => ['numeric', 'digits_between:1,10'],
+            'listing_name' => ['string', 'max:50'],
+            'summary' => ['nullable', 'string', 'min:10', 'max:255'],
+            'address' => ['string', 'max:255'],
+        ]);
 
         $room->update($request->all());
         
