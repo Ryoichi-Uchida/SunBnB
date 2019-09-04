@@ -23,19 +23,39 @@
                                 @method('PATCH')
                                 <div class="row">
                                     <div class="form-group col-12 col-md-6 col-lg-4">
-                                        @include('partials.amenity_choice', ['name' => 'has_tv', 'view' => 'TV', 'is_checked' => $room->has_tv])
+                                        @include('partials.amenity_choice', [
+                                            'name' => 'has_tv',
+                                            'view' => 'TV',
+                                            'checked' => $room->has_tv
+                                        ])
                                     </div>
                                     <div class="form-group col-12 col-md-6 col-lg-4">
-                                        @include('partials.amenity_choice', ['name' => 'has_kitchen', 'view' => 'Kitchen' 'is_checked' => $room->has_kitchen])
+                                        @include('partials.amenity_choice', [
+                                            'name' => 'has_kitchen',
+                                            'view' => 'Kitchen',
+                                            'checked' => $room->has_kitchen
+                                        ])
                                     </div>
                                     <div class="form-group col-12 col-md-6 col-lg-4">
-                                         @include('partials.amenity_choice', ['name' => 'has_internet', 'view' => 'Internet' 'is_checked' => $room->has_internet])
+                                         @include('partials.amenity_choice', [
+                                            'name' => 'has_internet',
+                                            'view' => 'Internet',
+                                            'checked' => $room->has_internet
+                                        ])
                                     </div>
                                     <div class="form-group col-12 col-md-6 col-lg-4">
-                                        @include('partials.amenity_choice', ['name' => 'has_heating', 'view' => 'Heating' 'is_checked' => $room->has_heating])
+                                        @include('partials.amenity_choice', [
+                                            'name' => 'has_heating',
+                                            'view' => 'Heating',
+                                            'checked' => $room->has_heating
+                                        ])
                                     </div>
                                     <div class="form-group col-12 col-md-6 col-lg-4">
-                                        @include('partials.amenity_choice', ['name' => 'has_air_conditioning', 'view' => 'Air Conditioning' 'is_checked' => $room->has_air_conditioning])
+                                        @include('partials.amenity_choice', [
+                                            'name' => 'has_air_conditioning',
+                                            'view' => 'Air Conditioning',
+                                            'checked' => $room->has_air_conditioning
+                                        ])
                                     </div>
                                 </div>
                                 <div class="form-group text-right">
