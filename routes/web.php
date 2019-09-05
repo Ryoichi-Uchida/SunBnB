@@ -20,8 +20,21 @@ Route::get('/callback/{provider}','SocialAuthController@callback')->name('callba
 Route::get('/', 'PageController@index')->name('index')->middleware('verified');
 
 // User
-Route::group(['middleware' => ['auth', 'verified'], 'prefix' => 'users', 'as' => 'user.'], function () {
+Route::group(['prefix' => 'users', 'as' => 'user.'], function () {
     Route::get('edit', 'UserController@edit')->name('edit');
     Route::get('show', 'UserController@show')->name('show');
     Route::patch('update', 'UserController@update')->name('update');
 });
+
+// Room    
+Route::resource('room', 'RoomController',[
+    'only' => ['create', 'store', 'update']
+]);
+Route::group(['prefix' => 'rooms', 'as' => 'room.'], function () {
+    Route::get('{room}/listing', 'RoomController@listing')->name('listing');
+    Route::get('{room}/pricing', 'RoomController@pricing')->name('pricing');
+    Route::get('{room}/description', 'RoomController@description')->name('description');
+    Route::get('{room}/photo', 'RoomController@photo')->name('photo');
+    Route::get('{room}/amenity', 'RoomController@amenity')->name('amenity');
+    Route::get('{room}/location', 'RoomController@location')->name('location');   
+});   
