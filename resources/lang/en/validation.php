@@ -145,10 +145,7 @@ return [
     */
 
     'attributes' => [
-        'info.price' => 'Price',
-        'info.listing_name' => 'Listing name',
-        'info.summary' => 'Summary',
-        'info.address' => 'Address',
+        //
     ],
 
 ];
