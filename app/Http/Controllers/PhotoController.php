@@ -33,8 +33,10 @@ class PhotoController extends Controller
             $filename = $file->getClientOriginalName();
             $photo = $room->photos()->create(['image' => $filename]);
 
-            // Making 3 type photos.
-            $room->make_photos($file, $photo, $filename);
+            //Making 3 types photos
+            $photo->make_base_photo($file, "original", $filename);
+            $photo->make_resize_photo($file, "medium", $filename, 300);
+            $photo->make_resize_photo($file, "thumb", $filename, 100);
         }
 
         toastr()->success("Successfully added!");

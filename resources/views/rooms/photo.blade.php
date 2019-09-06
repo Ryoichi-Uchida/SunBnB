@@ -32,8 +32,8 @@
                             </form>
                             <div class="row">
                                 @foreach ($room->photos as $photo)
-                                    <div class="col-4 mt-4">
-                                        <img src="/storage/images/{{ $photo->id }}/thumbnail/{{ $photo->image }}" alt="" class="w-100">
+                                    <div class="col-4 my-3">
+                                        <img src="/{{ $photo->images_directry("thumbnail") }}/{{ $photo->image }}" alt="" class="w-100">
                                     </div>
                                 @endforeach
                             </div>
