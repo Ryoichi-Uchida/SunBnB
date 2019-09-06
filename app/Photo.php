@@ -15,22 +15,22 @@ class Photo extends Model
         return $this->belongsTo('App\Room');
     }
 
-    public function images_directry($size)
+    public function image_directory($size)
     {
-    return "storage/images/{$this->id}/{$size}";
+    return "storage/images/{$this->id}/{$size}/{$this->image}";
     }
 
-    public function make_base_photo($file, $size, $filename)
+    public function savePhoto($file, $size)
     {
-        $file->storeAs("public/images/{$this->id}/$size", $filename);
+        $file->storeAs("public/images/{$this->id}/$size", $this->image);
     }
 
-    public function make_resize_photo($file, $size, $filename, $width)
+    public function resize($file, $size, $width)
     {
-        $this->make_base_photo($file, $size, $filename);
+        $this->savePhoto($file, $size);
 
         $image = Image::make(
-            public_path($this->images_directry($size)."/{$filename}")
+            public_path($this->image_directory($size))
         );
 
         $image->resize($width, null, function ($constraint) {
@@ -38,7 +38,7 @@ class Photo extends Model
             $constraint->upsize();
         });
 
-        $image->save(public_path($this->images_directry($size)."/{$filename}"));
+        $image->save(public_path($this->image_directory($size)));
     }
 
 }

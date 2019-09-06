@@ -33,7 +33,7 @@
                             <div class="row">
                                 @foreach ($room->photos as $photo)
                                     <div class="col-4 my-3">
-                                        <img src="/{{ $photo->images_directry("thumbnail") }}/{{ $photo->image }}" alt="" class="w-100">
+                                        <img src="/{{ $photo->image_directory("thumbnail") }}" alt="" class="w-100">
                                     </div>
                                 @endforeach
                             </div>
