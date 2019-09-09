@@ -34,10 +34,27 @@
                                 @foreach ($room->photos as $photo)
                                     <div class="col-4 my-3">
                                         <img src="/{{ $photo->image_directory("thumbnail") }}" alt="" class="w-100">
+                                        <button class="btn-delete">delete</button>
                                     </div>
                                 @endforeach
                             </div>
                         </div>
+
+                         {{-- <div class="row">
+                            <div class="modal">
+                                <div id="login-form">
+                                    <h2>Are you sure you want to delete it?</h2>
+                                    <form action="" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-outline-danger mx-1">
+                                            <span>Delete</span>
+                                        </button>
+                                    </form>
+                                    <a href="" class="btn btn-secondary float-right">Back to Category list</a>
+                                </div>
+                            </div>
+                        </div> --}}
 
                     </div>
                 </div>
@@ -45,4 +62,41 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('script')
+<script>
+    // $(document).ready(function(){
+    //     $('.btn-delete').click(function(){
+    //         console.log('You clicked!');
+    //     });
+    // });
+
+    // $(document).ready(function(){
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //         }
+    //     })
+
+    //     $('.btn-delete').click(function(){
+    //         //delete
+
+    //         $.ajax({
+    //             type: 'DELETE',
+    //             url: '{{ route('photo.destroy', ['id' => $photo->id]) }}',
+    //             // url: '/photos/{{ $photo->id }}',
+    //             // data: {_method: 'delete', _token :token},
+    //             success: function(data){
+    //                 console.log('success!');
+    //             },
+    //             failed: function(data){
+    //                 console.log('failed!');
+    //             },
+    //         });
+    //     });
+    // });
+
+</script>
 @endsection

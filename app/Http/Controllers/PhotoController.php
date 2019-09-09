@@ -7,6 +7,8 @@ use App\Room;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
+use App\Photo;
 
 class PhotoController extends Controller
 {
@@ -42,5 +44,19 @@ class PhotoController extends Controller
         toastr()->success("Successfully added!");
 
         return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        $photo = Photo::where('id', $id)->first();
+        $photo->delete();
+
+        return Response::json([
+            'message' => "delete success!"
+        ]);
+
+        return Response::json([
+            'message' => "delete failed.."
+        ]);
     }
 }
