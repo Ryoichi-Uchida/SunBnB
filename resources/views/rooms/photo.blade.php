@@ -19,7 +19,7 @@
                     <div class="box-body">
 
                         <div class="col-10 m-auto">
-                            <form action="{{ route('room.photo_store', ['room' => $room->id]) }}" method="post" enctype="multipart/form-data" class="border-bottom">
+                            <form action="{{ route('photo.store', ['room' => $room->id]) }}" method="post" enctype="multipart/form-data" class="border-bottom">
                                 @csrf
                                 <div class="row d-flex justify-content-center">
                                     <div class="form-group col-12 col-md-10">
@@ -83,7 +83,7 @@
         var route = ''; // Defining groval route for jQuery
         var photo_id = ''; // Defining groval photo_id for jQuery
 
-        // It shows Modal
+        // It makes data for Modal. 
         $('#ModalDelete').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Getting specific modal button
             photo_id = button.data('photo') //Updating id to delete funtion
