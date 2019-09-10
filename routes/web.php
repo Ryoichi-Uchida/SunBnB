@@ -36,9 +36,10 @@ Route::group(['prefix' => 'rooms', 'as' => 'room.'], function () {
     Route::get('{room}/description', 'RoomController@description')->name('description');
     Route::get('{room}/photo', 'RoomController@photo')->name('photo');
     Route::get('{room}/amenity', 'RoomController@amenity')->name('amenity');
-    Route::get('{room}/location', 'RoomController@location')->name('location');   
+    Route::get('{room}/location', 'RoomController@location')->name('location');
+    Route::post('{room}/photos/store', 'RoomController@photo_store')->name('photo_store');
 });
 
 //Photo
-Route::post('rooms/{room}/photos/store', 'PhotoController@store')->name('photo.store');
+
 Route::delete('photos/{id}', 'PhotoController@destroy')->name('photo.destroy');

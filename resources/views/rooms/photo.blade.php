@@ -19,7 +19,7 @@
                     <div class="box-body">
 
                         <div class="col-10 m-auto">
-                            <form action="{{ route('photo.store', ['room' => $room->id]) }}" method="post" enctype="multipart/form-data" class="border-bottom">
+                            <form action="{{ route('room.photo_store', ['room' => $room->id]) }}" method="post" enctype="multipart/form-data" class="border-bottom">
                                 @csrf
                                 <div class="row d-flex justify-content-center">
                                     <div class="form-group col-12 col-md-10">
@@ -80,18 +80,17 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        var route = ''; // Defining route for jQuery
-        var photo_id = '';
+        var route = ''; // Defining groval route for jQuery
+        var photo_id = ''; // Defining groval photo_id for jQuery
 
+        // It shows Modal
         $('#ModalDelete').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Getting specific modal button
-            photo_id = button.data('photo') 
+            photo_id = button.data('photo') //Updating id to delete funtion
             route = '/photos/'+photo_id // Updating route to delete funtion
-            var modal = $(this)  // Getting modal
-            
-            // modal.find('.btn-delete').attr('data-photo', route) // giving route to html form action
         })
 
+        // These are for ajax
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -105,12 +104,10 @@
                 url: route,
                 success: function(data){
                     alert(data.message);
-                    // var one_photo = getElementByID('#card-'+photo_id);
-                    // one_photo.remove();
                     $('#card-'+photo_id).remove();
                 },
                 failed: function(data){
-                    alert('Delete failed...');
+                    alert(data.message);
                 },
             });
         });
