@@ -9,7 +9,7 @@
                 <span class="h3">Profile Update</span>
             </div>
             <div class="h3 py-2 text-right">
-                <a href="{{ route('user.show') }}" class="btn btn-base btn-size-mini btn-color-main w-100">View my profile</a>
+                <a href="{{ route('users.show') }}" class="btn btn-base btn-size-mini btn-color-main w-100">View my profile</a>
             </div>
         </div>
 
@@ -26,7 +26,7 @@
                     <div class="box-body">
                         <div class="col-11 col-lg-8 m-auto">
 
-                            <form method="POST" action="{{ route('user.update') }}" method="post">
+                            <form method="POST" action="{{ route('users.update') }}" method="post">
                                 @method('PATCH')
                                 @csrf
                                 <div class="form-group">

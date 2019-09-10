@@ -18,7 +18,7 @@
                 <div class="col-12">
                     <div class="box-body">
                         <div class="col-10 m-auto">
-                            <form action="{{ route('room.update', ['room' => $room->id]) }}" method="post">
+                            <form action="{{ route('rooms.update', ['room' => $room->id]) }}" method="post">
                                 @csrf
                                 @method('PATCH')
                                 <div class="row d-flex justify-content-center">

@@ -16,12 +16,12 @@ class UserController extends Controller
 
     public function show()
     {
-        return view('user.show');
+        return view('users.show');
     }
 
     public function edit()
     {
-        return view('user.edit');
+        return view('users.edit');
     }
 
     public function update(Request $request)
@@ -68,6 +68,6 @@ class UserController extends Controller
 
         toastr()->success("Successfully updated!");
 
-        return redirect()->route('user.edit');
+        return redirect()->route('users.edit');
     }
 }

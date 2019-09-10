@@ -13,7 +13,7 @@
         <div class="col-12">
             <div class="box-body">
                 <div class="col-10 m-auto">
-                    <form action="{{ route('room.store') }}" method="post">
+                    <form action="{{ route('rooms.store') }}" method="post">
                         @csrf
                         <div class="row">
                             <div class="form-group col-12 col-md-6 col-lg-4">

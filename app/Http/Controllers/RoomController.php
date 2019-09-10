@@ -24,7 +24,7 @@ class RoomController extends Controller
 
         toastr()->success("Successfully created!");
 
-        return redirect()->route("room.listing", compact('room'));
+        return redirect()->route("rooms.listing", compact('room'));
     }
 
     public function listing(Room $room)

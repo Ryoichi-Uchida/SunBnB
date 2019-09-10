@@ -20,17 +20,17 @@ Route::get('/callback/{provider}','SocialAuthController@callback')->name('callba
 Route::get('/', 'PageController@index')->name('index')->middleware('verified');
 
 // User
-Route::group(['prefix' => 'users', 'as' => 'user.'], function () {
+Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
     Route::get('edit', 'UserController@edit')->name('edit');
     Route::get('show', 'UserController@show')->name('show');
     Route::patch('update', 'UserController@update')->name('update');
 });
 
 // Room    
-Route::resource('room', 'RoomController',[
+Route::resource('rooms', 'RoomController',[
     'only' => ['create', 'store', 'update']
 ]);
-Route::group(['prefix' => 'rooms', 'as' => 'room.'], function () {
+Route::group(['prefix' => 'rooms', 'as' => 'rooms.'], function () {
     Route::get('{room}/listing', 'RoomController@listing')->name('listing');
     Route::get('{room}/pricing', 'RoomController@pricing')->name('pricing');
     Route::get('{room}/description', 'RoomController@description')->name('description');
@@ -40,5 +40,5 @@ Route::group(['prefix' => 'rooms', 'as' => 'room.'], function () {
 });
 
 //Photo
-Route::post('rooms/{room}/photos/store', 'PhotoController@store')->name('photo.store');
-Route::delete('photos/{id}', 'PhotoController@destroy')->name('photo.destroy');
+Route::post('rooms/{room}/photos/store', 'PhotoController@store')->name('photos.store');
+Route::delete('photos/{id}', 'PhotoController@destroy')->name('photos.destroy');

@@ -19,7 +19,7 @@
                     <div class="box-body">
 
                         <div class="col-10 m-auto">
-                            <form action="{{ route('photo.store', ['room' => $room->id]) }}" method="post" enctype="multipart/form-data" class="border-bottom">
+                            <form action="{{ route('photos.store', ['room' => $room->id]) }}" method="post" enctype="multipart/form-data" class="border-bottom">
                                 @csrf
                                 <div class="row d-flex justify-content-center">
                                     <div class="form-group col-12 col-md-10">

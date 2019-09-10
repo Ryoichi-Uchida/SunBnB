@@ -52,7 +52,7 @@
                                 </li>
                             @endif
                         @else
-                            <a href="{{ route('room.create') }}" class="btn btn-base btn-size-mini btn-color-main d-flex align-content-center flex-wrap justify-content-center">
+                            <a href="{{ route('rooms.create') }}" class="btn btn-base btn-size-mini btn-color-main d-flex align-content-center flex-wrap justify-content-center">
                                 <span class="h5 mb-0">Become a host</span>
                             </a>
 
@@ -65,7 +65,7 @@
                                     @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.edit') }}">
+                                    <a class="dropdown-item" href="{{ route('users.edit') }}">
                                         Settings
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
