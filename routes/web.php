@@ -41,3 +41,4 @@ Route::group(['prefix' => 'rooms', 'as' => 'room.'], function () {
 
 //Photo
 Route::post('rooms/{room}/photos/store', 'PhotoController@store')->name('photo.store');
+Route::delete('photos/{id}', 'PhotoController@destroy')->name('photo.destroy');

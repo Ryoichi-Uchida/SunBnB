@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class Photo extends Model
 {
@@ -39,6 +40,13 @@ class Photo extends Model
         });
 
         $image->save(public_path($this->image_directory($size)));
+    }
+
+    public function delete_photoDirectory()
+    {
+        Storage::deleteDirectory(
+            "public/images/{$this->id}"
+        );
     }
 
 }

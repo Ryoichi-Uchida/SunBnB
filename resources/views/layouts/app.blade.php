@@ -52,8 +52,8 @@
                                 </li>
                             @endif
                         @else
-                            <a href="{{ route('room.create') }}" class="btn btn-base btn-size-mini btn-color-main d-flex align-content-centerd-flex align-content-center flex-wrap justify-content-center">
-                                <span class="h5 pl-2 mb-0">Become a host</span>
+                            <a href="{{ route('room.create') }}" class="btn btn-base btn-size-mini btn-color-main d-flex align-content-center flex-wrap justify-content-center">
+                                <span class="h5 mb-0">Become a host</span>
                             </a>
 
                             <li class="nav-item dropdown">
@@ -92,5 +92,6 @@
 @jquery
 @toastr_js
 @toastr_render
+@yield('script')
 </body>
 </html>

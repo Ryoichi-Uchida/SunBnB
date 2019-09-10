@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Room;
+use App\Photo;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Response;
 
 class PhotoController extends Controller
 {
@@ -42,5 +44,22 @@ class PhotoController extends Controller
         toastr()->success("Successfully added!");
 
         return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        $photo = Photo::find($id);
+
+        if($photo->delete()){
+            $photo->delete_photoDirectory();
+            
+            return Response::json([
+                'message' => "delete success!"
+            ]);
+        }else{
+            return Response::json([
+                'message' => "delete failed.."
+            ]);
+        }
     }
 }
