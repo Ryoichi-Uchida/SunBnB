@@ -24,7 +24,6 @@ class Room extends Model
             $this->price &&
             $this->listing_name &&
             $this->photos->count() &&
-            $this->has_tv &&
             $this->address
         ){
             return true;

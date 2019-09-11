@@ -4,11 +4,11 @@
 <div class="row">
     <table>
         <tbody class="h4">
-            @include('partials.room_item', ['id' => '', 'page' => 'listing', 'view' => 'Listing', 'checked' => $room->home_type])
+            @include('partials.room_item', ['id' => '', 'page' => 'listing', 'view' => 'Listing', 'checked' => "checked"])
             @include('partials.room_item', ['id' => '', 'page' => 'pricing', 'view' => 'Pricing', 'checked' => $room->price])
             @include('partials.room_item', ['id' => '', 'page' => 'description', 'view' => 'Description', 'checked' => $room->listing_name])
             @include('partials.room_item', ['id' => 'check', 'page' => 'photo', 'view' => 'Photos', 'checked' => $room->photos()->exists()])
-            @include('partials.room_item', ['id' => '', 'page' => 'amenity', 'view' => 'Amenities', 'checked' => $room->has_tv])
+            @include('partials.room_item', ['id' => '', 'page' => 'amenity', 'view' => 'Amenities', 'checked' => "checked"])
             @include('partials.room_item', ['id' => '', 'page' => 'location', 'view' => 'Location', 'checked' => $room->address])
         </tbody>
     </table>
