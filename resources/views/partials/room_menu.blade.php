@@ -4,17 +4,17 @@
 <div class="row">
     <table>
         <tbody class="h4">
-            @include('partials.room_item', ['id' => '', 'page' => 'listing', 'view' => 'Listing'])
-            @include('partials.room_item', ['id' => '', 'page' => 'pricing', 'view' => 'Pricing', 'filled' => 'filled_pricing'])
-            @include('partials.room_item', ['id' => '', 'page' => 'description', 'view' => 'Description', 'filled' => 'filled_description'])
-            @include('partials.room_item', ['id' => 'check', 'page' => 'photo', 'view' => 'Photos', 'filled' => 'filled_photos'])
-            @include('partials.room_item', ['id' => '', 'page' => 'amenity', 'view' => 'Amenities', 'filled' => 'filled_amenities'])
-            @include('partials.room_item', ['id' => '', 'page' => 'location', 'view' => 'Location', 'filled' => 'filled_location'])
+            @include('partials.room_item', ['id' => '', 'page' => 'listing', 'view' => 'Listing', 'checked' => "$room->home_type"])
+            @include('partials.room_item', ['id' => '', 'page' => 'pricing', 'view' => 'Pricing', 'checked' => "$room->price"])
+            @include('partials.room_item', ['id' => '', 'page' => 'description', 'view' => 'Description', 'checked' => "$room->listing_name"])
+            @include('partials.room_item', ['id' => 'check', 'page' => 'photo', 'view' => 'Photos', 'checked' => "$room->photos"])
+            @include('partials.room_item', ['id' => '', 'page' => 'amenity', 'view' => 'Amenities', 'checked' => "$room->has_tv"])
+            @include('partials.room_item', ['id' => '', 'page' => 'location', 'view' => 'Location', 'checked' => "$room->address"])
         </tbody>
     </table>
 </div>
 <div class="h3 py-2 border-bottom text-right">
-    <form action="{{ route('rooms.update', ['room' => $room->id]) }}" method="post">
+    <form action="{{ route('rooms.publish', ['room' => $room->id]) }}" method="post">
         @csrf
         @method('PATCH')
         <input type="hidden" name="active" value="1">

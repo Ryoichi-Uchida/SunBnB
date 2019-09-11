@@ -53,20 +53,16 @@ class PhotoController extends Controller
             // when this instance is deleted.
 
             // If the room doesn't have any photos...  
-            if(empty($photo->room->photos->first())){
+            if(empty($photo->room->photos->count())){
                 $photo->room->update([
                     'active' => 0
                 ]);
-
-                return Response::json([
-                    'message' => "delete success!",
-                    'active' => 0
-                ]);
-            }else{
-                return Response::json([
-                    'message' => "delete success!"
-                ]);
             }
+
+            return Response::json([
+                'message' => "delete success!",
+                'active' => $photo->room->active
+            ]);
         }else{
             return Response::json([
                 'message' => "delete failed.."

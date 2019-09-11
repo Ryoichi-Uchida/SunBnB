@@ -24,7 +24,7 @@
                                 <div class="row d-flex justify-content-center">
                                     <label for="file_photo" class="photo">
                                         + Please choose photos
-                                        <input type="file" id="file_photo" name="photos[]" multiple="multiple" required style="display:none;">
+                                        <input type="file" id="file_photo" name="photos[]" multiple="multiple" class="d-none" required>
                                     </label>
                                 </div>
                                 <div class="form-group text-right">
@@ -106,7 +106,7 @@
                 success: function(data){
                     $('#card-'+photo_id).remove();
                     if(data.active == 0){
-                        // Remoing check symbol
+                        // Removing check symbol
                         $("#check").text('');
                         // Adding disabled attr to publish button.
                         $("#disabled").prop('disabled', true);
