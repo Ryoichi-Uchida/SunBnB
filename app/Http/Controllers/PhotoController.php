@@ -53,7 +53,7 @@ class PhotoController extends Controller
             // when this instance is deleted.
 
             // If the room doesn't have any photos...  
-            if(empty($photo->room->photos->count())){
+            if($photo->room->photos->count() == 0){
                 $photo->room->update([
                     'active' => 0
                 ]);

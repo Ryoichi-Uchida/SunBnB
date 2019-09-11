@@ -75,9 +75,9 @@ class RoomController extends Controller
         return redirect()->back();
     }
 
-    public function publish(Request $request, Room $room)
+    public function publish(Room $room)
     {
-        $room->update($request->all());
+        $room->update(["active" => 1]);
 
         toastr()->success("Successfully published!");
 
