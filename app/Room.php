@@ -17,4 +17,18 @@ class Room extends Model
     {
         return $this->hasMany('App\Photo');
     }
+
+    public function filled_all()
+    {
+        if(
+            $this->price &&
+            $this->listing_name &&
+            $this->photos->count() &&
+            $this->address
+        ){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

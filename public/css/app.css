@@ -10733,7 +10733,7 @@ a.text-dark:focus {
 }
 
 .link-custom {
-  color: #4e5665;
+  color: #61656c;
 }
 
 .link-custom:hover {
@@ -10744,6 +10744,36 @@ a.text-dark:focus {
 
 .border {
   border: 1px solid #c6cbd2;
+}
+
+.room-list {
+  height: 50px;
+  width: 100px;
+}
+
+.photo {
+  color: white;
+  background-color: #61656c;
+  padding: 10px 30px;
+  border-radius: 6px;
+}
+
+.photo:hover {
+  text-decoration: none;
+  background-color: #6b6f76;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  background-color: #c6c8cd;
+  box-shadow: 0 4px #9a9ca0;
+  cursor: not-allowed;
+}
+
+.btn:disabled:active {
+  box-shadow: none;
+  position: relative;
+  top: 4px;
 }
 
 .navbar-laravel {

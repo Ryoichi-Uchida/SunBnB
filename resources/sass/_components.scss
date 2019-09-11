@@ -96,3 +96,33 @@
 .border {
     border: 1px solid $border;
 }
+
+.room-list {
+    height: 50px;
+    width: 100px;
+}
+
+.photo {
+    color: white;  
+    background-color: $text;
+    padding:10px 30px;
+    border-radius: 6px;
+    &:hover {
+        text-decoration: none;
+        background-color: #6b6f76;
+        cursor: pointer;
+    }
+}
+
+.btn {
+    &:disabled {
+        background-color: $disabled;
+        box-shadow: 0 4px #9a9ca0;
+        cursor: not-allowed;
+        &:active {
+            box-shadow: none;
+            position: relative;
+            top: 4px;
+        }
+    }  
+}
