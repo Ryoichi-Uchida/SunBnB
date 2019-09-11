@@ -13,6 +13,13 @@ class RoomController extends Controller
         $this->middleware(['auth', 'verified']);
     }
 
+    public function index()
+    {
+        $rooms = Auth::user()->rooms()->orderBy('created_at', 'desc')->paginate(5);
+
+        return view('rooms.index', compact('rooms'));
+    }
+
     public function create()
     {
         return view("rooms.create");

@@ -10683,6 +10683,10 @@ a.text-dark:focus {
   color: #48b5a1;
 }
 
+.text-menu {
+  color: #4788e9;
+}
+
 .bg-main {
   color: white;
   background-color: #48b5a1;

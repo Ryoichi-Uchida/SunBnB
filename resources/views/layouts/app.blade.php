@@ -65,6 +65,10 @@
                                     @endif
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('rooms.index') }}">
+                                        Manage Listing
+                                    </a>
+                                    <div class="border-top my-2"></div>
                                     <a class="dropdown-item" href="{{ route('users.edit') }}">
                                         Settings
                                     </a>

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Room extends Model
 {
@@ -29,6 +30,16 @@ class Room extends Model
             return true;
         }else{
             return false;
+        }
+    }
+
+    public function show_thumbnail()
+    {
+        if($this->photos()->exists()){
+            // Showing first image from s3
+            return Storage::disk('s3')->url($this->photos->first()->image_directory("thumbnail"));
+        }else{
+            return "/images/blank.jpg";
         }
     }
 }
