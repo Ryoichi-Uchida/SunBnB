@@ -67,6 +67,10 @@ class RoomController extends Controller
         ]);
 
         $room->update($request->all());
+
+        if($request->has('active')){
+            toastr()->success("Successfully published!");
+        }
         
         return redirect()->back();
     }

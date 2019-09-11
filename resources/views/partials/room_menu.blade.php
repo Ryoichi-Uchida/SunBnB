@@ -2,27 +2,24 @@
     <span class="h3">Room conditions</span>
 </div>
 <div class="row">
-    <div class="col-9">
-        <ul class="h5 list pl-4">
-            <li class="py-2"><a href="{{ route('rooms.listing', ['room' => $room->id]) }}" class="link-custom">Listing</a></li>
-            <li class="py-2"><a href="{{ route('rooms.pricing', ['room' => $room->id]) }}" class="link-custom">Pricing</a></li>
-            <li class="py-2"><a href="{{ route('rooms.description', ['room' => $room->id]) }}" class="link-custom">Description</a></li>
-            <li class="py-2"><a href="{{ route('rooms.photo', ['room' => $room->id]) }}" class="link-custom">Photos</a></li>
-            <li class="py-2"><a href="{{ route('rooms.amenity', ['room' => $room->id]) }}" class="link-custom">Amenities</a></li>
-            <li class="py-2"><a href="{{ route('rooms.location', ['room' => $room->id]) }}" class="link-custom">Location</a></li>
-        </ul>
-    </div>
-    <div class="col-3">
-        <ul class="h5 list pl-0">
-            <li class="text-main py-2">✔︎</li>
-            <li class="text-main py-2">✔︎</li>
-            <li class="text-main py-2">✔︎</li>
-            <li class="text-main py-2">✔︎</li>
-            <li class="text-main py-2">✔︎</li>
-            <li class="text-main py-2">✔︎</li>
-        </ul>
-    </div>
+    <table>
+        <tbody class="h4">
+            @include('partials.room_item', ['id' => '', 'page' => 'listing', 'view' => 'Listing'])
+            @include('partials.room_item', ['id' => '', 'page' => 'pricing', 'view' => 'Pricing', 'filled' => 'filled_pricing'])
+            @include('partials.room_item', ['id' => '', 'page' => 'description', 'view' => 'Description', 'filled' => 'filled_description'])
+            @include('partials.room_item', ['id' => 'check', 'page' => 'photo', 'view' => 'Photos', 'filled' => 'filled_photos'])
+            @include('partials.room_item', ['id' => '', 'page' => 'amenity', 'view' => 'Amenities', 'filled' => 'filled_amenities'])
+            @include('partials.room_item', ['id' => '', 'page' => 'location', 'view' => 'Location', 'filled' => 'filled_location'])
+        </tbody>
+    </table>
 </div>
 <div class="h3 py-2 border-bottom text-right">
-    <button type="submit" class="btn btn-base btn-size-mini btn-color-main w-50">Publish</button>
+    <form action="{{ route('rooms.update', ['room' => $room->id]) }}" method="post">
+        @csrf
+        @method('PATCH')
+        <input type="hidden" name="active" value="1">
+        <div class="form-group text-right">
+            <button type="submit" id="disabled" class="btn btn-base btn-size-mini btn-color-main w-50" {{ $room->filled_all() ? "" : "disabled" }}>Publish</button>
+        </div>
+    </form>
 </div>

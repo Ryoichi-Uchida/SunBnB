@@ -51,10 +51,22 @@ class PhotoController extends Controller
             // (Memo)
             // static boot() function is called automatically and delete directory from S3
             // when this instance is deleted.
-            
-            return Response::json([
-                'message' => "delete success!"
-            ]);
+
+            // If the room doesn't have any photos...  
+            if(empty($photo->room->photos->first())){
+                $photo->room->update([
+                    'active' => 0
+                ]);
+
+                return Response::json([
+                    'message' => "delete success!",
+                    'active' => 0
+                ]);
+            }else{
+                return Response::json([
+                    'message' => "delete success!"
+                ]);
+            }
         }else{
             return Response::json([
                 'message' => "delete failed.."

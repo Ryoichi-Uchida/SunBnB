@@ -36,7 +36,7 @@ Route::group(['prefix' => 'rooms', 'as' => 'rooms.'], function () {
     Route::get('{room}/description', 'RoomController@description')->name('description');
     Route::get('{room}/photo', 'RoomController@photo')->name('photo');
     Route::get('{room}/amenity', 'RoomController@amenity')->name('amenity');
-    Route::get('{room}/location', 'RoomController@location')->name('location');   
+    Route::get('{room}/location', 'RoomController@location')->name('location');
 });
 
 //Photo

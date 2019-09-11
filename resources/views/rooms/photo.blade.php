@@ -22,12 +22,13 @@
                             <form action="{{ route('photos.store', ['room' => $room->id]) }}" method="post" enctype="multipart/form-data" class="border-bottom">
                                 @csrf
                                 <div class="row d-flex justify-content-center">
-                                    <div class="form-group col-12 col-md-10">
-                                        <input type="file" name="photos[]" multiple="multiple" required>
-                                    </div>
+                                    <label for="file_photo" class="photo">
+                                        + Please choose photos
+                                        <input type="file" id="file_photo" name="photos[]" multiple="multiple" required style="display:none;">
+                                    </label>
                                 </div>
                                 <div class="form-group text-right">
-                                    <button type="submit" class="btn btn-base btn-size-mini btn-color-main w-25">Add photos</button>
+                                    <button type="submit" class="btn btn-base btn-size-mini btn-color-main">Add photos</button>
                                 </div>
                             </form>
 
@@ -80,8 +81,8 @@
 @section('script')
 <script>
     $(document).ready(function(){
-        var route = ''; // Defining groval route for jQuery
-        var photo_id = ''; // Defining groval photo_id for jQuery
+        var route = ''; // Defining global route for jQuery
+        var photo_id = ''; // Defining global photo_id for jQuery
 
         // It makes data for Modal. 
         $('#ModalDelete').on('show.bs.modal', function (event) {
@@ -103,8 +104,14 @@
                 type: 'DELETE',
                 url: route,
                 success: function(data){
-                    alert(data.message);
                     $('#card-'+photo_id).remove();
+                    if(data.active == 0){
+                        // Remoing check symbol
+                        $("#check").text('');
+                        // Adding disabled attr to publish button.
+                        $("#disabled").prop('disabled', true);
+                    }
+                    alert(data.message);
                 },
                 failed: function(data){
                     alert(data.message);
