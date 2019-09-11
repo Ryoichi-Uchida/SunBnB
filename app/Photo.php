@@ -4,12 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Intervention\Image\Facades\Image;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
 class Photo extends Model
 {
     protected $guarded = [];
+
+    public $sizes = [
+        "original" => null,
+        "medium" => 300,
+        "thumbnail" => 100
+    ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleted(function($photo){
+            Storage::disk('s3')->deleteDirectory("storage/images/{$photo->id}");
+        });
+    }
 
     public function room()
     {
@@ -18,35 +32,23 @@ class Photo extends Model
 
     public function image_directory($size)
     {
-    return "storage/images/{$this->id}/{$size}/{$this->image}";
+        return "storage/images/{$this->id}/{$size}/{$this->image}";
     }
 
-    public function savePhoto($file, $size)
+    public function savePhoto($file)
     {
-        $file->storeAs("public/images/{$this->id}/$size", $this->image);
+        foreach ($this->sizes as $size => $width) {
+            $image = Image::make($file);
+
+            if(!is_null($width)){
+                $image->resize($width, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+            }
+
+            // It saves image file to S3
+            Storage::disk('s3')->put($this->image_directory($size), $image->encode(), 'public');
+        };
     }
-
-    public function resize($file, $size, $width)
-    {
-        $this->savePhoto($file, $size);
-
-        $image = Image::make(
-            public_path($this->image_directory($size))
-        );
-
-        $image->resize($width, null, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        });
-
-        $image->save(public_path($this->image_directory($size)));
-    }
-
-    public function delete_photoDirectory()
-    {
-        Storage::deleteDirectory(
-            "public/images/{$this->id}"
-        );
-    }
-
 }
