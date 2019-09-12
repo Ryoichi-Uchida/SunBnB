@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 text-center">
                     @if($room->user->socialAccount)
-                        <img class="rounded-circle nav-image" src="{{ $room->user->socialAccount->image }}">
+                        <img class="rounded-circle nav-image img-facebook" src="{{ $room->user->socialAccount->image }}">
                     @else
                         <img class="rounded-circle" src="{{ $room->user->gravatar(150) }}">
                     @endif
@@ -62,7 +62,7 @@
                     <div class="swiper-container" id="slide" data-num="{{ $room->photos->count() }}">
                         <div class="swiper-wrapper">
                             @foreach ($room->photos as $photo)
-                                <div class="swiper-slide"><img class="w-100" src="{{ $photo->show("medium") }}"></div>
+                                <div class="swiper-slide"><img class="w-100" src="{{ $photo->show("original") }}"></div>
                             @endforeach
                         </div>
                         <div class="swiper-pagination swiper-pagination-white"></div>

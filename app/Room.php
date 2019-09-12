@@ -37,7 +37,7 @@ class Room extends Model
     {
         if($this->photos()->exists()){
             // Showing first image from s3
-            return Storage::disk('s3')->url($this->photos->first()->image_directory($size));
+            return $this->photos->first()->show($size);
         }else{
             return "/images/blank.jpg";
         }

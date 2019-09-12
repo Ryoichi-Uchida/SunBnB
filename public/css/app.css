@@ -10785,6 +10785,11 @@ a.text-dark:focus {
   cursor: pointer;
 }
 
+.img-facebook {
+  width: 150px;
+  height: 150px;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
