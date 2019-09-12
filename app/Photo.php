@@ -51,4 +51,9 @@ class Photo extends Model
             Storage::disk('s3')->put($this->image_directory($size), $image->encode(), 'public');
         };
     }
+
+    public function show($size)
+    {
+        return Storage::disk('s3')->url($this->image_directory($size));
+    }
 }

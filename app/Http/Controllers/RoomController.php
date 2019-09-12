@@ -34,6 +34,11 @@ class RoomController extends Controller
         return redirect()->route("rooms.listing", compact('room'));
     }
 
+    public function show(Room $room)
+    {
+        return view("rooms.show", compact('room'));
+    }
+
     public function listing(Room $room)
     {
         return view("rooms.listing", compact('room'));

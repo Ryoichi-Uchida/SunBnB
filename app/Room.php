@@ -33,11 +33,11 @@ class Room extends Model
         }
     }
 
-    public function show_thumbnail()
+    public function show_photo($size)
     {
         if($this->photos()->exists()){
             // Showing first image from s3
-            return Storage::disk('s3')->url($this->photos->first()->image_directory("thumbnail"));
+            return $this->photos->first()->show($size);
         }else{
             return "/images/blank.jpg";
         }

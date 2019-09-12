@@ -31,12 +31,30 @@
     box-shadow: 0 4px #284074;
 }
 
+.btn {
+    &:disabled {
+        background-color: $disabled;
+        box-shadow: 0 4px #9a9ca0;
+        cursor: not-allowed;
+        &:active {
+            box-shadow: none;
+            position: relative;
+            top: 4px;
+        }
+    }  
+}
+
 .text-main {
     color: $main;
 }
 
 .text-menu {
     color: $menu;
+}
+
+.text-delete {
+    text-decoration: line-through;
+    color: $delete;
 }
 
 .bg-main {
@@ -118,15 +136,7 @@
     }
 }
 
-.btn {
-    &:disabled {
-        background-color: $disabled;
-        box-shadow: 0 4px #9a9ca0;
-        cursor: not-allowed;
-        &:active {
-            box-shadow: none;
-            position: relative;
-            top: 4px;
-        }
-    }  
-}
+.img-facebook {
+    width: 150px;
+    height: 150px;
+  }
