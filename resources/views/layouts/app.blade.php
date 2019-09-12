@@ -97,7 +97,6 @@
 @jquery
 @toastr_js
 @toastr_render
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 @yield('script')
 </body>
 </html>

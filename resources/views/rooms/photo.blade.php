@@ -36,7 +36,7 @@
                                 @foreach ($room->photos as $photo)
                                     <div class="col-12 col-sm-6 col-lg-4 my-2" id="card-{{ $photo->id }}">
                                         <div class="card">
-                                            <img src="{{ Storage::disk('s3')->url($photo->image_directory("thumbnail")) }}" alt="" class="card-img-top border">
+                                            <img src="{{ $photo->show("thumbnail") }}" alt="" class="card-img-top border">
                                             <div class="card-body py-2 ml-auto">
                                                 <div class="row">
 

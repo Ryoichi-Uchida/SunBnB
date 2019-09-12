@@ -4,7 +4,7 @@
 <div class="container my-3">
     <div class="row">
         <div class="col-12">
-            <img class="w-100" src="{{ $room->show_original() }}">
+            <img class="w-100" src="{{ $room->show_photo("original") }}">
         </div>
     </div>
     <div class="row my-4">
@@ -19,7 +19,7 @@
                     <h3>{{ $room->address }}</h3>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 text-center">
-                    @if(!empty($room->user->socialAccount->image))
+                    @if($room->user->socialAccount)
                         <img class="rounded-circle nav-image" src="{{ $room->user->socialAccount->image }}">
                     @else
                         <img class="rounded-circle" src="{{ $room->user->gravatar(150) }}">
@@ -62,7 +62,7 @@
                     <div class="swiper-container" id="slide" data-num="{{ $room->photos->count() }}">
                         <div class="swiper-wrapper">
                             @foreach ($room->photos as $photo)
-                                <div class="swiper-slide"><img class="w-100" src="{{ $photo->show_medium() }}"></div>
+                                <div class="swiper-slide"><img class="w-100" src="{{ $photo->show("medium") }}"></div>
                             @endforeach
                         </div>
                         <div class="swiper-pagination swiper-pagination-white"></div>
@@ -127,14 +127,15 @@
 @endsection
 
 @section('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <script>
     $(function() {
 
         // Preparation getting how many photos does this room has
-        var target1 = document.getElementById('slide');
+        var target = document.getElementById('slide');
 
         // If the room has two or more photos...
-        if(target1.getAttribute('data-num') != 1){
+        if(target.getAttribute('data-num') != 1){
             // Making new slide function
             var mySwiper = new Swiper ('.swiper-container', {
                 // options

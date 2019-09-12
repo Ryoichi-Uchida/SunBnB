@@ -21,12 +21,10 @@
                             @foreach ($rooms as $room)
                                 <div class="row py-2 my-2 border bg-white d-flex">
                                     <div class="col-4 col-md-3 d-flex align-items-center my-1">
-                                        <img src="{{ $room->show_thumbnail() }}" alt="">
+                                        <img src="{{ $room->show_photo("thumbnail") }}" alt="">
                                     </div>
                                     <div class="col-8 col-md-6 d-flex align-items-center my-1">
-                                        <a href="{{ route('rooms.show', ['room' => $room->id]) }}">
-                                            <span>{{ $room->listing_name }}</span>
-                                        </a>
+                                        <span>{{ $room->listing_name }}</span>
                                     </div>
                                     <div class="col-12 col-md-3 d-flex align-items-center my-1">
                                         <a href="{{ route('rooms.listing', ['room' => $room->id]) }}" class="btn btn-base btn-size-mini btn-color-main d-flex align-content-center flex-wrap justify-content-center w-100">

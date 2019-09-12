@@ -52,8 +52,8 @@ class Photo extends Model
         };
     }
 
-    public function show_medium()
+    public function show($size)
     {
-        return Storage::disk('s3')->url($this->image_directory("medium"));
+        return Storage::disk('s3')->url($this->image_directory($size));
     }
 }
