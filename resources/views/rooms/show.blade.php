@@ -80,6 +80,13 @@
                 </div>
             </div>
 
+            {{-- Map area --}}
+            <div class="row py-3 border-bottom">
+                <div class="col-12">
+                    <div id="map" class="map-height"></div>
+                </div>
+            </div>
+
             {{-- Introductin of nearby rooms --}}
             <div class="row py-3">
                 <div class="col-12">
@@ -127,6 +134,7 @@
 @endsection
 
 @section('script')
+{{-- For Swiper --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <script>
     $(function() {
@@ -159,5 +167,31 @@
         }
 
     });
+</script>
+
+{{-- For Google map --}}
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.googlemaps.api_key') }}"></script>
+<script>
+    function initialize() {
+        var location = {lat: {{ $room->latitude }} , lng: {{ $room->longtitude }} };
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: location,
+            zoom: 14
+        });
+
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
+
+        // Adding window to show room's photo
+        var infoWindow = new google.maps.InfoWindow({
+            content: "<div id='content'><img class='w-100' src='{{ $room->show_photo("medium") }}'></div>"
+        });
+    
+        infoWindow.open(map, marker);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 @endsection

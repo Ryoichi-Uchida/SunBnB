@@ -25,8 +25,8 @@ class CreateRoomsTable extends Migration
             $table->string('listing_name')->nullable();
             $table->string('summary')->nullable();
             $table->string('address')->nullable();
-            $table->tinyInteger('longtitude')->nullable();
-            $table->tinyInteger('latitude')->nullable();
+            $table->double('longtitude', 9, 6)->nullable();
+            $table->double('latitude', 8, 6)->nullable();
             $table->boolean('has_tv')->nullable();
             $table->boolean('has_kitchen')->nullable();
             $table->boolean('has_internet')->nullable();
