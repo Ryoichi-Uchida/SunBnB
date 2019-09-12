@@ -10679,12 +10679,29 @@ a.text-dark:focus {
   box-shadow: 0 4px #284074;
 }
 
+.btn:disabled {
+  background-color: #c6c8cd;
+  box-shadow: 0 4px #9a9ca0;
+  cursor: not-allowed;
+}
+
+.btn:disabled:active {
+  box-shadow: none;
+  position: relative;
+  top: 4px;
+}
+
 .text-main {
   color: #48b5a1;
 }
 
 .text-menu {
   color: #4788e9;
+}
+
+.text-delete {
+  text-decoration: line-through;
+  color: #a4a2a2;
 }
 
 .bg-main {
@@ -10768,17 +10785,12 @@ a.text-dark:focus {
   cursor: pointer;
 }
 
-.btn:disabled {
-  background-color: #c6c8cd;
-  box-shadow: 0 4px #9a9ca0;
-  cursor: not-allowed;
-}
-
-.btn:disabled:active {
-  box-shadow: none;
-  position: relative;
-  top: 4px;
-}
+.swiper-wrapper.disabled {
+  transform: translate3d(0px, 0, 0) !important;
+  }
+  .swiper-pagination.disabled {
+  display: none;
+  }
 
 .navbar-laravel {
   background-color: #fff;

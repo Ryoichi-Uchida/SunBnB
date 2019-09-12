@@ -28,7 +28,7 @@ Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
 
 // Room    
 Route::resource('rooms', 'RoomController',[
-    'only' => ['index', 'create', 'store', 'update']
+    'only' => ['index', 'create', 'store', 'show', 'update']
 ]);
 
 Route::group(['prefix' => 'rooms', 'as' => 'rooms.'], function () {

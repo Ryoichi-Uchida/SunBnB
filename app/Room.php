@@ -42,4 +42,14 @@ class Room extends Model
             return "/images/blank.jpg";
         }
     }
+
+    public function show_original()
+    {
+        if($this->photos()->exists()){
+            // Showing first image from s3
+            return Storage::disk('s3')->url($this->photos->first()->image_directory("original"));
+        }else{
+            return "/images/blank.jpg";
+        }
+    }
 }

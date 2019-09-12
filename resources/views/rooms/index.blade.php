@@ -24,7 +24,9 @@
                                         <img src="{{ $room->show_thumbnail() }}" alt="">
                                     </div>
                                     <div class="col-8 col-md-6 d-flex align-items-center my-1">
-                                        <span>{{ $room->listing_name }}</span>
+                                        <a href="{{ route('rooms.show', ['room' => $room->id]) }}">
+                                            <span>{{ $room->listing_name }}</span>
+                                        </a>
                                     </div>
                                     <div class="col-12 col-md-3 d-flex align-items-center my-1">
                                         <a href="{{ route('rooms.listing', ['room' => $room->id]) }}" class="btn btn-base btn-size-mini btn-color-main d-flex align-content-center flex-wrap justify-content-center w-100">
