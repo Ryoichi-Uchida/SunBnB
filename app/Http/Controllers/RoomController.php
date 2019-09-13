@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Room;
+use Spatie\Geocoder\Facades\Geocoder;
 
 class RoomController extends Controller
 {
@@ -79,6 +80,14 @@ class RoomController extends Controller
         ]);
 
         $room->update($request->all());
+
+        if($request->has('address')){
+            $geo = Geocoder::getCoordinatesForAddress($request->address);
+            $room->update([
+                "longtitude" => $geo['lng'],
+                "latitude" => $geo['lat'],
+            ]);
+        }
 
         if($request->has('active')){
             toastr()->success("Successfully published!");
