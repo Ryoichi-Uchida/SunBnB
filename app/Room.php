@@ -42,4 +42,24 @@ class Room extends Model
             return "/images/blank.jpg";
         }
     }
+
+    public function near_rooms()
+    {
+        $radius = 10;
+        // It calculates km from this instance.
+        $prepare = "(6378 * acos(
+                    cos(radians($this->latitude)) * 
+                    cos(radians(latitude)) * 
+                    cos(radians(longtitude) - radians($this->longtitude)) + 
+                    sin(radians($this->latitude)) * 
+                    sin(radians(latitude)))
+        )";
+
+        return Room::select('*')
+                    ->selectRaw("{$prepare} AS distance")
+                    ->having("distance", "<", $radius)
+                    ->where('id', '!=', $this->id)
+                    ->orderBy("distance")
+                    ->get();
+    }
 }
