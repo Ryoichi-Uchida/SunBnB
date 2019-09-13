@@ -1,0 +1,54 @@
+// For facebook avatar
+    // (app.blade)
+    .img-sm-fb {
+        height: 30px;
+        width: 30px;
+    }
+
+    // (rooms/photo.blade)
+    .img-lg-fb {
+        width: 150px;
+        height: 150px;
+    }
+
+// For input type "file"
+// (rooms/photo.blade)
+.file-decoration {
+    color: white;  
+    background-color: $text;
+    padding:10px 30px;
+    border-radius: 6px;
+    &:hover {
+        text-decoration: none;
+        background-color: #6b6f76;
+        cursor: pointer;
+    }
+}
+
+// For room publish button
+// (partisals/room_menu.blade)
+.btn {
+    &:disabled {
+        background-color: $disabled;
+        box-shadow: 0 4px #9a9ca0;
+        cursor: not-allowed;
+        &:active {
+            box-shadow: none;
+            position: relative;
+            top: 4px;
+        }
+    }  
+}
+
+// For showing google map
+// (rooms/show.blade)
+.map-height {
+    height: 400px;
+}
+
+// For room making menu
+// (partisals/room_item.blade)
+.making-menu {
+    height: 50px;
+    width: 100px;
+}

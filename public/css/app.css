@@ -10679,18 +10679,6 @@ a.text-dark:focus {
   box-shadow: 0 4px #284074;
 }
 
-.btn:disabled {
-  background-color: #c6c8cd;
-  box-shadow: 0 4px #9a9ca0;
-  cursor: not-allowed;
-}
-
-.btn:disabled:active {
-  box-shadow: none;
-  position: relative;
-  top: 4px;
-}
-
 .text-main {
   color: #48b5a1;
 }
@@ -10744,15 +10732,6 @@ a.text-dark:focus {
   list-style: none;
 }
 
-.nav-image {
-  height: 30px;
-  width: 30px;
-}
-
-.list {
-  list-style: none;
-}
-
 .link-custom {
   color: #61656c;
 }
@@ -10767,31 +10746,48 @@ a.text-dark:focus {
   border: 1px solid #c6cbd2;
 }
 
-.room-list {
-  height: 50px;
-  width: 100px;
+.img-sm-fb {
+  height: 30px;
+  width: 30px;
 }
 
-.photo {
+.img-lg-fb {
+  width: 150px;
+  height: 150px;
+}
+
+.file-decoration {
   color: white;
   background-color: #61656c;
   padding: 10px 30px;
   border-radius: 6px;
 }
 
-.photo:hover {
+.file-decoration:hover {
   text-decoration: none;
   background-color: #6b6f76;
   cursor: pointer;
 }
 
-.img-facebook {
-  width: 150px;
-  height: 150px;
+.btn:disabled {
+  background-color: #c6c8cd;
+  box-shadow: 0 4px #9a9ca0;
+  cursor: not-allowed;
+}
+
+.btn:disabled:active {
+  box-shadow: none;
+  position: relative;
+  top: 4px;
 }
 
 .map-height {
   height: 400px;
+}
+
+.making-menu {
+  height: 50px;
+  width: 100px;
 }
 
 .navbar-laravel {

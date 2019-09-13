@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 text-center">
                     @if($room->user->socialAccount)
-                        <img class="rounded-circle nav-image img-facebook" src="{{ $room->user->socialAccount->image }}">
+                        <img class="rounded-circle img-lg-fb" src="{{ $room->user->socialAccount->image }}">
                     @else
                         <img class="rounded-circle" src="{{ $room->user->gravatar(150) }}">
                     @endif

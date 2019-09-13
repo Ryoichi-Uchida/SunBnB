@@ -60,7 +60,7 @@
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @if(!empty(Auth::user()->socialAccount->image))
-                                        <img class="rounded-circle nav-image" src="{{ Auth::user()->socialAccount->image }}"><span> {{ Auth::user()->name }} </span>
+                                        <img class="rounded-circle img-sm-fb" src="{{ Auth::user()->socialAccount->image }}"><span> {{ Auth::user()->name }} </span>
                                     @else
                                         <img class="rounded-circle" src="{{ Auth::user()->gravatar(30) }}"><span> {{ Auth::user()->name }} </span>
                                     @endif

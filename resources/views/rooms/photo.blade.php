@@ -22,7 +22,7 @@
                             <form action="{{ route('photos.store', ['room' => $room->id]) }}" method="post" enctype="multipart/form-data" class="border-bottom">
                                 @csrf
                                 <div class="row d-flex justify-content-center">
-                                    <label for="file_photo" class="photo">
+                                    <label for="file_photo" class="file-decoration">
                                         + Please choose photos
                                         <input type="file" id="file_photo" name="photos[]" multiple="multiple" class="d-none" required>
                                     </label>

@@ -8,8 +8,11 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// components
+// components(global)
 @import 'components';
+
+// components(local)
+@import 'locals';
 
 .navbar-laravel {
   background-color: #fff;
