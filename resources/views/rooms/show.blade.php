@@ -91,15 +91,15 @@
             <div class="row py-3">
                 <div class="col-12">
                     <h2>Nearbys</h2>
-                    @foreach ($room->near_rooms() as $room)
+                    @foreach ($room->near_rooms() as $near_room)
                         <div class="col-12 col-sm-6 col-lg-4 my-2">
                             <div class="card">
-                                <img class="card-img-top" src="{{ $room->show_photo("medium") }}">
+                                <img class="card-img-top" src="{{ $near_room->show_photo("medium") }}">
                                 <div class="card-body py-2">
                                     <div class="row">
                                         <div class="col-9">
-                                            <h5><a href="{{ route('rooms.show', ['room' => $room->id]) }}">{{ $room->listing_name }}</a></h5>
-                                            <h5>{{ round($room->distance, 2) }}km</h5>
+                                            <h5><a href="{{ route('rooms.show', ['room' => $near_room->id]) }}">{{ $near_room->listing_name }}</a></h5>
+                                            <p>{{ round($near_room->distance, 2) }}km away</p>
                                         </div>
                                     </div>
                                 </div>
@@ -116,22 +116,26 @@
             <div class="row">
                 <div class="col-12">
                     <div class="box-head">
-                        <h5 class="my-0">$ {{ $room->price }} <span class="text-right p">Per Night</span></h5>
+                        <h4 class="my-0">Reservation</h5>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="box-body pr-2">
-                        <form action="" method="post">
+                    <div class="box-body pr-2 py-3">
+                        <div class="text-right">
+                            <h5><span class="text-main h3">$ {{ $room->price }}</span> Per Night</h5>
+                        </div>
+                        <form action="{{ route('reservations.store', ['room' => $room->id]) }}" method="post">
+                            @csrf
                             <div class="row">
                                 <div class="col-12 col-sm-6 form-group">
                                     <label for="">Check In :</label>
-                                    <input type="text" name="" id="" class="form-control">
+                                    <input type="date" name="checkin" id="" class="form-control" required>
                                 </div>
                                 <div class="col-12 col-sm-6 form-group">
                                     <label for="">Check Out :</label>
-                                    <input type="text" name="" id="" class="form-control">
+                                    <input type="date" name="checkout" id="" class="form-control" required>
                                 </div>
                                 <div class="col-12 form-group mx-auto my-3">
                                     <button type="submit" class="btn btn-base btn-size-mini btn-color-main px-5 w-100">Book Now</button>

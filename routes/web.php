@@ -44,3 +44,6 @@ Route::group(['prefix' => 'rooms', 'as' => 'rooms.'], function () {
 //Photo
 Route::post('rooms/{room}/photos/store', 'PhotoController@store')->name('photos.store');
 Route::delete('photos/{id}', 'PhotoController@destroy')->name('photos.destroy');
+
+// Reservation
+Route::post('rooms/{room}/reservations/store', 'ReservationController@store')->name('reservations.store');

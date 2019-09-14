@@ -48,13 +48,18 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\SocialAccount');
     }
 
-    public function getPhoneNumber() 
-    {
-        return sprintf("%011d", $this->phone);
-    }
-
     public function rooms()
     {
         return $this->hasMany('App\Room');
+    }
+
+    public function reservations()
+    {
+        return $this->hasMany('App\Reservation', 'user_id');
+    }
+
+    public function getPhoneNumber() 
+    {
+        return sprintf("%011d", $this->phone);
     }
 }

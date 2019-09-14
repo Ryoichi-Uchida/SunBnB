@@ -19,6 +19,11 @@ class Room extends Model
         return $this->hasMany('App\Photo');
     }
 
+    public function reservations()
+    {
+        return $this->hasMany('App\Reservation', 'room_id');
+    }
+
     public function filled_all()
     {
         if(
@@ -45,8 +50,9 @@ class Room extends Model
 
     public function near_rooms()
     {
+        // It is Distance to search rooms(km)
         $radius = 10;
-        // It calculates km from this instance.
+        // It calculates km from this instance(It's just text data).
         $prepare = "(6378 * acos(
                     cos(radians($this->latitude)) * 
                     cos(radians(latitude)) * 
@@ -55,8 +61,11 @@ class Room extends Model
                     sin(radians(latitude)))
         )";
 
+        //
         return Room::select('*')
-                    ->selectRaw("{$prepare} AS distance")
+                    //It makes new attribute "as" distance.
+                    //We can retrieve distance from this instance ($room->distance)
+                    ->selectRaw("$prepare AS distance")
                     ->having("distance", "<", $radius)
                     ->where('id', '!=', $this->id)
                     ->orderBy("distance")
