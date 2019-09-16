@@ -131,11 +131,11 @@
                             <div class="row">
                                 <div class="col-12 col-sm-6 form-group">
                                     <label for="">Check In :</label>
-                                    <input type="date" name="checkin" id="" class="form-control" required>
+                                    <input type="text" name="checkin" id="checkin" class="form-control" required autocomplete="off">
                                 </div>
                                 <div class="col-12 col-sm-6 form-group">
                                     <label for="">Check Out :</label>
-                                    <input type="date" name="checkout" id="" class="form-control" required>
+                                    <input type="text" name="checkout" id="checkout" class="form-control" required autocomplete="off">
                                 </div>
                                 <div class="col-12 form-group mx-auto my-3">
                                     <button type="submit" class="btn btn-base btn-size-mini btn-color-main px-5 w-100">Book Now</button>
@@ -213,3 +213,17 @@
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 @endsection
+
+{{-- For Datepicker --}}
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function() {
+        $('#checkin').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+        $('#checkout').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+    });
+</script>
