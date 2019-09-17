@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Room;
 use Spatie\Geocoder\Facades\Geocoder;
+use Carbon\Carbon;
 
 class RoomController extends Controller
 {
@@ -103,5 +104,34 @@ class RoomController extends Controller
         toastr()->success("Successfully published!");
 
         return redirect()->back();
+    }
+
+    // Getting all the reservtions with start_date >= today and end_date >= today.
+    public function preload(Room $room)
+    {
+        $reservations = $room->reservations()
+                            ->where(function($query){
+                                $query->where('checkin_at', '>=', today())
+                                    ->orWhere('checkout_at', '>=', today());
+                            })->get();
+
+        if($reservations){
+            return response()->json(
+                $reservations
+            );
+        }
+    }
+
+    //It calculates conflict when the user input booking form
+    public function preshow(Room $room, Request $request)
+    {
+        $in = Carbon::createFromFormat('Y-m-d', $request->checkin_at);
+        $out = Carbon::createFromFormat('Y-m-d', $request->checkout_at);
+        
+        $conflicts = $room->reservations()->where('checkin_at', '>', $in)->where('checkin_at', '<', $out);
+
+        return response()->json([
+            'conflict' => $conflicts->count() ? 1 : 0
+        ]);    
     }
 }
