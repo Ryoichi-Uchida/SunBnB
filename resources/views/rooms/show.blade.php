@@ -126,7 +126,7 @@
                         <div class="text-right">
                             <h5><span class="text-main h3">$ {{ $room->price }}</span> Per Night</h5>
                         </div>
-                        <form action="{{ route('reservations.store', ['room' => $room->id]) }}" method="get" id="date_form">
+                        <form action="{{ route('reservations.store', ['room' => $room->id]) }}" method="post" id="date_form">
                             @csrf
                             <div class="row">
                                 <div class="col-12 col-sm-6 form-group">
@@ -149,11 +149,11 @@
                                             </tr>
                                             <tr class="h5">
                                                 <td>Night(s)</td>
-                                                <td class="text-right">× 2</td>
+                                                <td class="text-right" id="nights"></td>
                                             </tr>
                                             <tr class="h4 text-main">
                                                 <td>Total</td>
-                                                <td class="text-right">$ 1600</td>
+                                                <td class="text-right" id="total"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -251,29 +251,35 @@
     function checkPreview(){
         var checkin_at = $('#checkin').datepicker({ dateFormat: 'yy-mm-dd'}).val();
         var checkout_at = $('#checkout').datepicker({ dateFormat: 'yy-mm-dd'}).val();
+        var nights = (new Date(checkout_at) - new Date(checkin_at))/1000/60/60/24;
+        var total = nights * {{ $room->price }};
 
-        $.ajax({
-            type: 'GET',
-            url: "{{ route('rooms.preshow', ['room' => $room->id]) }}",
-            data: {
-                'checkin_at': checkin_at,
-                'checkout_at': checkout_at,
-            },
-            success: function(data){
-                // If request doesn't cause conflict, you can check total cost and reserve it.
-                if(data.conflict == 0){
-                    $('#caution').hide();
-                    $('#summary').slideDown();
-                    $('#reserve').prop('disabled', false);
-                    
-                // If request causes conflict, you can't proceed next step.
-                }else{
-                    $('#caution').show();
-                    $('#summary').slideUp();
-                    $('#reserve').prop('disabled', true);
-                }
-            }, 
-        });  
+        if(checkout_at){
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('rooms.preshow', ['room' => $room->id]) }}",
+                data: {
+                    'checkin_at': checkin_at,
+                    'checkout_at': checkout_at,
+                },
+                success: function(data){
+                    // If request doesn't cause conflict, you can check total cost and reserve it.
+                    if(data.conflict == 0){
+                        $('#caution').hide();
+                        $('#summary').slideDown();
+                        $('#reserve').prop('disabled', false);
+                        $('#nights').text(nights);
+                        $('#total').text(total);
+                        
+                    // If request causes conflict, you can't proceed next step.
+                    }else{
+                        $('#caution').show();
+                        $('#summary').slideUp();
+                        $('#reserve').prop('disabled', true);
+                    }
+                }, 
+            });
+        }
     };
     
     $(function() {
