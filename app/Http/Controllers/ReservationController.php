@@ -10,6 +10,11 @@ use Carbon\Carbon;
 
 class ReservationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(['auth', 'verified']);
+    }
+
     public function store(Request $request, Room $room)
     {
         if(Auth::user()->id == $room->user->id){
@@ -31,5 +36,21 @@ class ReservationController extends Controller
             toastr()->success("Successfully reserved!");
         }
         return redirect()->back();
+    }
+
+    public function reserves()
+    {
+        $reservations = Reservation::whereHas('room', function($query){
+            $query->where('user_id', Auth::user()->id);
+        })->orderBy('checkin_at')->paginate(10);
+        
+        return view('reservations.reserves', compact('reservations'));
+    }
+
+    public function trips()
+    {
+        $reservations = Auth::user()->reservations()->orderBy('checkin_at')->paginate(10);
+        
+        return view('reservations.trips', compact('reservations'));
     }
 }

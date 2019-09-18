@@ -49,3 +49,8 @@ Route::delete('photos/{id}', 'PhotoController@destroy')->name('photos.destroy');
 
 // Reservation
 Route::post('rooms/{room}/reservations/store', 'ReservationController@store')->name('reservations.store');
+Route::get('reservations', 'ReservationController@reserves')->name('reservations.reserves');
+Route::get('trips', 'ReservationController@trips')->name('reservations.trips');
+
+// Review
+Route::post('reviews/{reservation}', 'ReviewController@store')->name('reviews.store');

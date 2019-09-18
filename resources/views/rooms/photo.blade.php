@@ -55,8 +55,8 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                                     <button type="" class="btn btn-danger mx-1 btn-delete" data-dismiss="modal">Delete</button>
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                                 </div>
                                                             </div>
                                                         </div>
