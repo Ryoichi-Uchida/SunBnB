@@ -39,6 +39,8 @@ Route::group(['prefix' => 'rooms', 'as' => 'rooms.'], function () {
     Route::get('{room}/amenity', 'RoomController@amenity')->name('amenity');
     Route::get('{room}/location', 'RoomController@location')->name('location');
     Route::patch('{room}/publish', 'RoomController@publish')->name('publish');
+    Route::get('{room}/preload', 'RoomController@preload')->name('preload');
+    Route::get('{room}/preshow', 'RoomController@preshow')->name('preshow');
 });
 
 //Photo

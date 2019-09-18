@@ -126,7 +126,7 @@
                         <div class="text-right">
                             <h5><span class="text-main h3">$ {{ $room->price }}</span> Per Night</h5>
                         </div>
-                        <form action="{{ route('reservations.store', ['room' => $room->id]) }}" method="post">
+                        <form action="{{ route('reservations.store', ['room' => $room->id]) }}" method="post" id="date_form">
                             @csrf
                             <div class="row">
                                 <div class="col-12 col-sm-6 form-group">
@@ -135,10 +135,31 @@
                                 </div>
                                 <div class="col-12 col-sm-6 form-group">
                                     <label for="">Check Out :</label>
-                                    <input type="text" name="checkout" id="checkout" class="form-control" required autocomplete="off">
+                                    <input type="text" name="checkout" id="checkout" class="form-control" required autocomplete="off" disabled>
+                                </div>
+                                <div class="col-12 text-center text-danger hide" id="caution">
+                                    <span>The schedule is already filled by someone</span>
+                                </div>
+                                <div class="col-12 hide" id="summary">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr class="h5">
+                                                <td>Price</td>
+                                                <td class="text-right">$ {{ $room->price }}</td>
+                                            </tr>
+                                            <tr class="h5">
+                                                <td>Night(s)</td>
+                                                <td class="text-right" id="nights"></td>
+                                            </tr>
+                                            <tr class="h4 text-main">
+                                                <td>Total</td>
+                                                <td class="text-right" id="total"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                                 <div class="col-12 form-group mx-auto my-3">
-                                    <button type="submit" class="btn btn-base btn-size-mini btn-color-main px-5 w-100">Book Now</button>
+                                    <button type="submit" class="btn btn-base btn-size-mini btn-color-main px-5 w-100" disabled id="reserve">Book Now</button>
                                 </div>
                             </div>
                         </form>
@@ -152,6 +173,7 @@
 @endsection
 
 @section('script')
+
 {{-- For Swiper --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <script>
@@ -212,18 +234,104 @@
     }
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
-@endsection
 
 {{-- For Datepicker --}}
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+
+    // checkDate will return an array containing true and false values. if true, it's not crossed out, if false, it's crossed out
+    function checkDate(date){
+        ymd = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+        // $.inArray(x,array) => will check if x is inside array, will return -1 if its not inside
+        return [$.inArray(ymd, unavailableDates) == -1];
+    };
+
+    // checkPreview checks reservation's conflict and hundle the reservation is possoble or not using jQuery
+    function checkPreview(){
+        var checkin_at = $('#checkin').datepicker({ dateFormat: 'yy-mm-dd'}).val();
+        var checkout_at = $('#checkout').datepicker({ dateFormat: 'yy-mm-dd'}).val();
+        var nights = (new Date(checkout_at) - new Date(checkin_at))/1000/60/60/24;
+        var total = nights * {{ $room->price }};
+
+        if(checkout_at){
+            $.ajax({
+                type: 'GET',
+                url: "{{ route('rooms.preshow', ['room' => $room->id]) }}",
+                data: {
+                    'checkin_at': checkin_at,
+                    'checkout_at': checkout_at,
+                },
+                success: function(data){
+                    // If request doesn't cause conflict, you can check total cost and reserve it.
+                    if(data.conflict == 0){
+                        $('#caution').hide();
+                        $('#summary').slideDown();
+                        $('#reserve').prop('disabled', false);
+                        $('#nights').text(nights);
+                        $('#total').text(total);
+                        
+                    // If request causes conflict, you can't proceed next step.
+                    }else{
+                        $('#caution').show();
+                        $('#summary').slideUp();
+                        $('#reserve').prop('disabled', true);
+                    }
+                }, 
+            });
+        }
+    };
+    
     $(function() {
-        $('#checkin').datepicker({
-            dateFormat: 'yy-mm-dd'
-        });
-        $('#checkout').datepicker({
-            dateFormat: 'yy-mm-dd'
+        unavailableDates = [];
+
+        //compare all the dates displayed by datepicker to the unavailable dates
+        //If thr date is in one of the unavailable dates, do not display in datepicker
+        $.ajax({
+            type: 'GET',
+            url: "{{ route('rooms.preload', ['room' => $room->id]) }}",
+            success: function(data){
+                //cross out the dates that are in data in the datepicker display
+                //determin which dates are unavailable for each reservation
+                $.each(data, function(key, value){    
+                    // loop for start to end date of the spscific reservation
+                    for (var date = new Date(value.checkin_at); date <= new Date(value.checkout_at); date.setDate(date.getDate() + 1)){
+                        unavailableDates.push($.datepicker.formatDate('yy-m-d', date));
+                    }
+                });
+
+                // It's for checkin carender
+                $('#checkin').datepicker({
+                    dateFormat: 'yy-mm-dd',
+                    minDate: 0, //set the current date as the first available date 
+                    maxDate: '3m', //only display until 3 months max
+                    beforeShowDay: checkDate,
+                    onSelect: function(selected){
+                        next_day = new Date(selected);
+                        next_day.setDate(next_day.getDate() + 1);
+                        $('#checkout').datepicker('option', 'minDate', next_day);
+                        $('#checkout').prop('disabled', false);
+                        checkPreview();
+                    }
+                });
+
+                // It's for checkout carender
+                $('#checkout').datepicker({
+                    dateFormat: 'yy-mm-dd',
+                    minDate: 0, //set the current date as the first available date 
+                    maxDate: '3m', //only display until 3 months max
+                    beforeShowDay: checkDate,
+                    onSelect: function(selected){
+                        last_day = new Date(selected);
+                        last_day.setDate(last_day.getDate() - 1);
+                        $('#checkin').datepicker('option', 'maxDate', last_day);
+                        checkPreview();
+                    }
+                });
+            },
         });
     });
 </script>
+@endsection
+
+

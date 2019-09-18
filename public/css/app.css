@@ -10746,6 +10746,10 @@ a.text-dark:focus {
   border: 1px solid #c6cbd2;
 }
 
+.hide {
+  display: none;
+}
+
 .img-sm-fb {
   height: 30px;
   width: 30px;
