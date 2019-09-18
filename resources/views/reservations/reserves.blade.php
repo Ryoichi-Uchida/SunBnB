@@ -48,7 +48,6 @@
             var button = $(event.relatedTarget) // Getting specific modal button
             reservation_id = button.data('reservation') //Updating id
             route = '/reviews/'+reservation_id // Updating route
-            console.log(route);
         })
     
         $.ajaxSetup({
@@ -66,7 +65,11 @@
                 data: $(form).serialize(),
                 dataType: 'json',
                 success: function(data){
-                    toastr.success(data.message);
+                    if(data.error != null){
+                        toastr.error(data.message);
+                    }else{
+                        toastr.success(data.message);
+                    }
                     document.getElementById("review_form").reset();
                 }
             });

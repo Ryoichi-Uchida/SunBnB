@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use App\Reservation;
+use App\Review;
 
 class ReviewController extends Controller
 {
@@ -22,6 +23,13 @@ class ReviewController extends Controller
         }else{
             $reviewed_target_id = $reservation->user->id;
             $reviewer_type = 'host';
+        }
+
+        if(Review::Where('reviewer_type', $reviewer_type)->where('reservation_id', $reservation->id)->count()){
+            return Response::json([
+                'message' => "You already created review about this trip!",
+                'error' => "1",
+            ]);
         }
 
         $reservation->reviews()->create([

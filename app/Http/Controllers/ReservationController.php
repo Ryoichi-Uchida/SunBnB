@@ -42,14 +42,14 @@ class ReservationController extends Controller
     {
         $reservations = Reservation::whereHas('room', function($query){
             $query->where('user_id', Auth::user()->id);
-        })->paginate(10);
+        })->orderBy('checkin_at')->paginate(10);
         
         return view('reservations.reserves', compact('reservations'));
     }
 
     public function trips()
     {
-        $reservations = Auth::user()->reservations()->orderBy('created_at', 'desc')->paginate(10);
+        $reservations = Auth::user()->reservations()->orderBy('checkin_at')->paginate(10);
         
         return view('reservations.trips', compact('reservations'));
     }
