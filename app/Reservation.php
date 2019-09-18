@@ -12,11 +12,16 @@ class Reservation extends Model
 
     public function user()
     {
-        $this->belongsTo('App\user');
+        return $this->belongsTo('App\user');
     }
 
     public function room()
     {
-        $this->belongsTo('App\room');
+        return $this->belongsTo('App\room');
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
     }
 }

@@ -58,6 +58,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Reservation', 'user_id');
     }
 
+    // public function reviews_as_host()
+    // {
+    //     return $this->hasMany('App\Review', 'reviewer_id')->where('reviewer_type', 'host');
+    // }
+
+    // public function reviews_as_guest()
+    // {
+    //     return $this->hasMany('App\Review', 'reviewer_id')->where('reviewer_type', 'guest');
+    // }
+
     public function getPhoneNumber() 
     {
         return sprintf("%011d", $this->phone);

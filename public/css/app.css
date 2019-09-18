@@ -10679,6 +10679,11 @@ a.text-dark:focus {
   box-shadow: 0 4px #284074;
 }
 
+.btn-color-spot {
+  background-color: #ee93b6;
+  box-shadow: 0 4px #b57d92;
+}
+
 .text-main {
   color: #48b5a1;
 }

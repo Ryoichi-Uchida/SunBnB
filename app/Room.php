@@ -24,6 +24,11 @@ class Room extends Model
         return $this->hasMany('App\Reservation', 'room_id');
     }
 
+    public function reviews()
+    {
+        return $this->hasMany('App\Review');
+    }
+
     public function filled_all()
     {
         if(

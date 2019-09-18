@@ -60,15 +60,22 @@
 
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    @if(!empty(Auth::user()->socialAccount->image))
-                                        <img class="rounded-circle img-sm-fb" src="{{ Auth::user()->socialAccount->image }}"><span> {{ Auth::user()->name }} </span>
-                                    @else
-                                        <img class="rounded-circle" src="{{ Auth::user()->gravatar(30) }}"><span> {{ Auth::user()->name }} </span>
-                                    @endif
+                                    @include('partials.photo_space', [
+                                        'user' => Auth::user(),
+                                        'img_size' => 'img-sm-fb',
+                                        'gravatar_size' => '30'
+                                    ])
+                                    <span> {{ Auth::user()->name }} </span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('rooms.index') }}">
                                         Manage Listing
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('reservations.reserves') }}">
+                                        Your reserves
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('reservations.trips') }}">
+                                        Your trips
                                     </a>
                                     <div class="border-top my-2"></div>
                                     <a class="dropdown-item" href="{{ route('users.edit') }}">

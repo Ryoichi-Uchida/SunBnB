@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
+use App\User;
 
 class UserController extends Controller
 {
@@ -14,9 +15,9 @@ class UserController extends Controller
         $this->middleware(['auth', 'verified']);
     }
 
-    public function show()
+    public function show(User $user)
     {
-        return view('users.show');
+        return view('users.show', compact('user'));
     }
 
     public function edit()

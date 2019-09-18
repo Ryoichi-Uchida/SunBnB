@@ -10,7 +10,7 @@
     <div class="row my-4">
 
         {{-- Left space --}}
-        <div class="col-12 col-lg-7">
+        <div class="col-12 col-lg-8">
 
             {{--　Room summary --}}
             <div class="row border-bottom py-3">
@@ -19,11 +19,11 @@
                     <h3>{{ $room->address }}</h3>
                 </div>
                 <div class="col-12 col-md-6 col-lg-4 text-center">
-                    @if($room->user->socialAccount)
-                        <img class="rounded-circle img-lg-fb" src="{{ $room->user->socialAccount->image }}">
-                    @else
-                        <img class="rounded-circle" src="{{ $room->user->gravatar(150) }}">
-                    @endif
+                    @include('partials.photo_space', [
+                        'user' => $room->user,
+                        'img_size' => 'img-lg-fb',
+                        'gravatar_size' => '150'
+                    ])
                     <h4 class="">{{ $room->user->name }}</h4>
                 </div>
             </div>
@@ -112,7 +112,7 @@
         </div>
 
         {{-- Right space --}}
-        <div class="col-12 col-lg-5">
+        <div class="col-12 col-lg-4">
             <div class="row">
                 <div class="col-12">
                     <div class="box-head">
@@ -124,7 +124,7 @@
                 <div class="col-12">
                     <div class="box-body pr-2 py-3">
                         <div class="text-right">
-                            <h5><span class="text-main h3">$ {{ $room->price }}</span> Per Night</h5>
+                            <h5><span class="text-main h4">$ {{ $room->price }}</span> Per Night</h5>
                         </div>
                         <form action="{{ route('reservations.store', ['room' => $room->id]) }}" method="post" id="date_form">
                             @csrf
