@@ -38,7 +38,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <form action="" method="get">
+                        <form action="{{ route('search') }}" method="get">
                             @csrf
                             <input type="text" name="word" id="" class="form-control border-main" placeholder="Any keywords..">
                         </form>
