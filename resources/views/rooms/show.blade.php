@@ -183,7 +183,6 @@
 <script>
     $('.star').raty({
         path: '/images',
-        scoreName:'star',
         score: function(){
             $(this).attr('data-score');
         },
