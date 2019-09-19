@@ -26,6 +26,7 @@
                                         @include('partials.listing_item', [
                                             'label' => 'Home Type',
                                             'name' => 'home_type',
+                                            'required' => "required",
                                             'selected' => $room->home_type,
                                             'options' => ['Apartment', 'House', 'Bed & Breakfast']
                                         ])
@@ -34,6 +35,7 @@
                                         @include('partials.listing_item', [
                                             'label' => 'Room Type',
                                             'name' => 'room_type',
+                                            'required' => "required",
                                             'selected' => $room->room_type,
                                             'options' => ['Entire', 'Private', 'Shared']
                                         ])
@@ -42,6 +44,7 @@
                                         @include('partials.listing_item', [
                                             'label' => 'Accomodate',
                                             'name' => 'accomodate',
+                                            'required' => "required",
                                             'selected' => $room->accomodate,
                                             'options' => [1, 2, 3, 4]
                                         ])
@@ -50,6 +53,7 @@
                                         @include('partials.listing_item', [
                                             'label' => 'Bedrooms',
                                             'name' => 'bedroom',
+                                            'required' => "required",
                                             'selected' => $room->bedroom,
                                             'options' => [1, 2, 3, 4]
                                         ])
@@ -58,6 +62,7 @@
                                         @include('partials.listing_item', [
                                             'label' => 'Bathrooms',
                                             'name' => 'bathroom',
+                                            'required' => "required",
                                             'selected' => $room->bathroom,
                                             'options' => [1, 2, 3, 4]
                                         ])
