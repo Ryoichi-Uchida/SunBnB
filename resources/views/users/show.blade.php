@@ -57,7 +57,6 @@
 
             <div class="row">
                 <div class="col-12 my-4">
-                    {{-- <h3>Reviews from Hosts</h3> --}}
                     <div class="pb-3">
                         <h3>Reviews from Hosts ({{ $user->totalRate_from_host() }})</h3>
                         <div class="star" data-score="{{ $user->averageRate_from_host() }}"></div>

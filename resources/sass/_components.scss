@@ -1,3 +1,12 @@
+.bg-img {
+    background-image: url(https://d1f5hsy4d47upe.cloudfront.net/08/08b57df217e0c7a1d16ee6a82764d141_t.jpeg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 700px;
+}
+
 .btn-base {
     color: white;
     &:hover {
@@ -111,4 +120,8 @@
     background: none;
     height:30px;
     width:30px;
-  }
+}
+
+.input-height {
+    height: 50px;
+}

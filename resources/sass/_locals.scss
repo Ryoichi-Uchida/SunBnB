@@ -11,6 +11,7 @@
         height: 150px;
     }
 
+    // (rooms/show.blade)
     .img-md-fb {
         width: 80px;
         height: 80px;
@@ -56,4 +57,10 @@
 .making-menu {
     height: 50px;
     width: 100px;
+}
+
+// For nav search form
+// (app.blade)
+.border-main {
+    border: 2px solid $main;
 }

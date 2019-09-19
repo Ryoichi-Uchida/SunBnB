@@ -10644,6 +10644,15 @@ a.text-dark:focus {
   }
 }
 
+.bg-img {
+  background-image: url(https://d1f5hsy4d47upe.cloudfront.net/08/08b57df217e0c7a1d16ee6a82764d141_t.jpeg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  min-height: 700px;
+}
+
 .btn-base {
   color: white;
 }
@@ -10762,6 +10771,10 @@ a.text-dark:focus {
   width: 30px;
 }
 
+.input-height {
+  height: 50px;
+}
+
 .img-sm-fb {
   height: 30px;
   width: 30px;
@@ -10809,6 +10822,10 @@ a.text-dark:focus {
 .making-menu {
   height: 50px;
   width: 100px;
+}
+
+.border-main {
+  border: 2px solid #48b5a1;
 }
 
 .navbar-laravel {
