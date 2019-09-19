@@ -17,4 +17,10 @@ class Review extends Model
     {
         return $this->belongsTo('App\Reservation');
     }
+
+    public function reviewer()
+    {
+         return $this->belongsTo('App\user', 'reviewer_id');
+        
+    }
 }

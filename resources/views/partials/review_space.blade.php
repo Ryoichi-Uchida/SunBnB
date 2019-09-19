@@ -1,11 +1,11 @@
 <div class="row border-bottom pt-2 pb-1" id="review-{{ $review->id }}">
     <div class="col-4 col-md-2 my-1 text-center">
         @include('partials.photo_space', [
-            'user' => $review->guest_user,
+            'user' => $review->reviewer,
             'img_size' => 'img-md-fb',
             'gravatar_size' => '80'
         ])
-        <span class="h4">{{ $review->guest_user->name }}</span>
+        <span class="h4">{{ $review->reviewer->name }}</span>
     </div>
     <div class="col-6 col-md-8 my-1">
         <div id="star" class="star" data-score="{{ $review->star }}"></div>
@@ -13,7 +13,7 @@
         <p>{{ $review->comment }}</p>
     </div>
     <div class="col-2 d-flex align-items-center my-1">
-        @if (Auth::user()->id == $review->guest_user->id)
+        @if (Auth::user()->id == $review->reviewer->id)
             <form action="{{ route('reviews.destroy',['review' => $review->id]) }}" method="post">
                 @method('DELETE')
                 @csrf
