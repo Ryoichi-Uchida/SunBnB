@@ -12,7 +12,7 @@
             'img_size' => 'img-sm-fb',
             'gravatar_size' => '30'
         ])
-        <a href="{{ route('users.show', ['user' => $user->id]) }}" class="ml-2 h5">{{ $user->name }}</a>
+        <a href="{{ route('users.show', ['user' => $reservation->room->user->id]) }}" class="ml-2 h5">{{ $user->name }}</a>
     </div>
     <div class="col-12 col-sm-12 col-lg-4 d-flex align-items-center my-1">
         <a href="" class="btn btn-base btn-size-mini btn-color-spot d-flex align-content-center flex-wrap justify-content-center w-100" data-toggle="modal" data-target="#ModalReview" data-reservation={{ $reservation->id }}>
@@ -33,8 +33,8 @@
                 <div class="modal-body">
                     <form action="" method="post" name="review_form" id="review_form">
                         <input type="hidden" name="reviewer_type" value="{{ $type }}">
-                        <div class="form-group">
-                            <input type="text" name="star" id="" class="form-control" required>
+                        <div class="form-group text-center">
+                            <div class="star"></div>
                         </div>
                         <div class="form-group">
                             <textarea name="comment" id="" class="form-control" required placeholder="Please write your opinion..."></textarea>

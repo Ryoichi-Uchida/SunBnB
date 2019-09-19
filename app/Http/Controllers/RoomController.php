@@ -38,7 +38,8 @@ class RoomController extends Controller
 
     public function show(Room $room)
     {
-        return view("rooms.show", compact('room'));
+        $reviews = $room->reviews()->where('reviewer_type', 'guest')->orderBy('created_at', 'desc')->get();
+        return view("rooms.show", compact('room', 'reviews'));
     }
 
     public function listing(Room $room)

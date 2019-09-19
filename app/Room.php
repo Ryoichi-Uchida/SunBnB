@@ -76,4 +76,15 @@ class Room extends Model
                     ->orderBy("distance")
                     ->get();
     }
+
+    public function totalRate()
+    {
+        return $this->reviews()->where('reviewer_type', 'guest')->count();
+    }
+
+    public function averageRate()
+    {
+        $rate = $this->reviews()->where('reviewer_type', 'guest')->avg('star');
+        return round($rate, 0); 
+    }
 }

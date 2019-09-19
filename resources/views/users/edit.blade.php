@@ -9,7 +9,7 @@
                 <span class="h3">Profile Update</span>
             </div>
             <div class="h3 py-2 text-right">
-                <a href="{{ route('users.show') }}" class="btn btn-base btn-size-mini btn-color-main w-100">View my profile</a>
+                <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}" class="btn btn-base btn-size-mini btn-color-main w-100">View my profile</a>
             </div>
         </div>
 

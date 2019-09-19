@@ -46,4 +46,13 @@ class ReviewController extends Controller
         ]);
     }
 
+    public function destroy(Review $review)
+    {
+        $review->delete();
+
+        toastr()->success('delete successfully!');
+
+        return redirect()->back();
+    }
+
 }

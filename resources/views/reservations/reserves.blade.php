@@ -76,4 +76,12 @@
         });
     });
 </script>
+
+<script>
+    $('.star').raty({
+        path: '/images',
+        scoreName:'star',
+        score:3,
+    });
+</script>
 @endsection

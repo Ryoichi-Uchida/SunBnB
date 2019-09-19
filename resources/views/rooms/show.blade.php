@@ -57,7 +57,7 @@
             </div>
 
             {{-- Room Images slider (Using "Swiper") --}}
-            <div class="row py-3">
+            <div class="row border-bottom py-3">
                 <div class="col-12">
                     <div class="swiper-container" id="slide" data-num="{{ $room->photos->count() }}">
                         <div class="swiper-wrapper">
@@ -73,10 +73,15 @@
             </div>
 
             {{-- Reviews area --}}
-            <div class="row py-3 border-bottom">
+            <div class="row py-3">
                 <div class="col-12">
-                    <h2>2 Reviews</h2>
-                    <h5 class="text-center">There are no reviews.</h5>
+                    <div class="pb-3 border-bottom">
+                        <h2>{{ $room->totalRate() }} Reviews</h2>
+                        <div class="star" data-score="{{ $room->averageRate() }}"></div>
+                    </div>
+                    @foreach ($reviews as $review)
+                        @include('partials.review_space')
+                    @endforeach
                 </div>
             </div>
 
@@ -174,6 +179,18 @@
 
 @section('script')
 
+{{-- For Raty --}}
+<script>
+    $('.star').raty({
+        path: '/images',
+        scoreName:'star',
+        score: function(){
+            $(this).attr('data-score');
+        },
+        readOnly: true
+    });
+</script>
+
 {{-- For Swiper --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
 <script>
@@ -236,8 +253,6 @@
 </script>
 
 {{-- For Datepicker --}}
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 
     // checkDate will return an array containing true and false values. if true, it's not crossed out, if false, it's crossed out
@@ -332,6 +347,7 @@
         });
     });
 </script>
+
 @endsection
 
 
