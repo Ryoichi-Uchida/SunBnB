@@ -18,6 +18,7 @@ Route::get('/callback/{provider}','SocialAuthController@callback')->name('callba
 
 // Page
 Route::get('/', 'PageController@index')->name('index')->middleware('verified');
+Route::get('/search', 'PageController@search')->name('search')->middleware('verified');
 
 // User
 Route::group(['prefix' => 'users', 'as' => 'users.'], function () {

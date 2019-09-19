@@ -16,15 +16,21 @@
                 <input type="text" name="address" id="" class="form-control input-height" placeholder="Where are you going?" autocomplete="off">
             </div>
             <div class="form-group col-md-3">
-                <input type="text" name="checkin" id="checkin" class="form-control input-height" placeholder="Start Date" autocomplete="off">
+                @include('partials.date_form',[
+                    'name' => 'checkin',
+                    'placeholder' => 'Start Date'
+                ])
             </div>
             <div class="form-group col-md-3">
-                <input type="text" name="checkout" id="checkout" class="form-control input-height" placeholder="End Date" autocomplete="off">
+                @include('partials.date_form',[
+                    'name' => 'checkout',
+                    'placeholder' => 'End Date'
+                ])
             </div>
         </div>
 
         <div class="row pb-5 border-bottom d-flex justify-content-center">
-            <a href="" class="btn btn-base btn-size-mini btn-color-main d-flex align-content-center flex-wrap justify-content-center w-25">
+            <a href="{{ route('search') }}" class="btn btn-base btn-size-mini btn-color-main d-flex align-content-center flex-wrap justify-content-center w-25">
                 <span class="h5 mb-0">Search</span>
             </a>
         </div>
@@ -60,23 +66,27 @@
 <script>
     $(function() {
         $('#checkin').datepicker({
-
+            dateFormat: 'yy-mm-dd',
+            minDate: 0,
+            maxDate: '3m',
         });
 
         $('#checkout').datepicker({
-
+            dateFormat: 'yy-mm-dd',
+            minDate: 0,
+            maxDate: '3m',
         });
     });
 </script>
 
 {{-- For Raty --}}
 <script>
-        $('.star').raty({
-            path: '/images',
-            score: function(){
-                $(this).attr('data-score');
-            },
-            readOnly: true
-        });
-    </script>
+    $('.star').raty({
+        path: '/images',
+        score: function(){
+            $(this).attr('data-score');
+        },
+        readOnly: true
+    });
+</script>
 @endsection

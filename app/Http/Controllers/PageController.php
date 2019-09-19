@@ -12,4 +12,9 @@ class PageController extends Controller
         $rooms = Room::where('active', 1)->orderBy('created_at', 'desc')->take(6)->get();
         return view('pages.home', compact('rooms'));
     }
+
+    public function search()
+    {
+        return view('pages.search');
+    }
 }
