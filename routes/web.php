@@ -22,7 +22,7 @@ Route::get('/', 'PageController@index')->name('index')->middleware('verified');
 // User
 Route::group(['prefix' => 'users', 'as' => 'users.'], function () {
     Route::get('edit', 'UserController@edit')->name('edit');
-    Route::get('show', 'UserController@show')->name('show');
+    Route::get('{user}', 'UserController@show')->name('show');
     Route::patch('update', 'UserController@update')->name('update');
 });
 
@@ -53,4 +53,7 @@ Route::get('reservations', 'ReservationController@reserves')->name('reservations
 Route::get('trips', 'ReservationController@trips')->name('reservations.trips');
 
 // Review
-Route::post('reviews/{reservation}', 'ReviewController@store')->name('reviews.store');
+Route::group(['prefix' => 'reviews', 'as' => 'reviews.'], function () {
+    Route::post('{reservation}', 'ReviewController@store')->name('store');
+    Route::delete('{review}', 'ReviewController@destroy')->name('destroy');
+});

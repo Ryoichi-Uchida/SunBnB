@@ -105,6 +105,7 @@
 @jquery
 @toastr_js
 @toastr_render
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raty/2.8.0/jquery.raty.js"></script>
 @yield('script')
 </body>
 </html>

@@ -17,7 +17,10 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return view('users.show', compact('user'));
+        $rooms = $user->rooms()->where('active', '1')->get();
+        $reviews_from_guest = $user->reviews_from_guest()->orderBy('created_at', 'desc')->get();
+        $reviews_from_host = $user->reviews_from_host()->orderBy('created_at', 'desc')->get();
+        return view('users.show', compact('user', 'rooms', 'reviews_from_guest', 'reviews_from_host'));
     }
 
     public function edit()
