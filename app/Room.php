@@ -43,6 +43,11 @@ class Room extends Model
         }
     }
 
+    public function near_rooms()
+    {
+        return Room::near(10, $this->latitude, $this->longtitude)->get();
+    }
+
     public function show_photo($size)
     {
         if($this->photos()->exists()){
@@ -51,30 +56,6 @@ class Room extends Model
         }else{
             return "/images/blank.jpg";
         }
-    }
-
-    public function near_rooms()
-    {
-        // It is Distance to search rooms(km)
-        $radius = 10;
-        // It calculates km from this instance(It's just text data).
-        $prepare = "(6378 * acos(
-                    cos(radians($this->latitude)) * 
-                    cos(radians(latitude)) * 
-                    cos(radians(longtitude) - radians($this->longtitude)) + 
-                    sin(radians($this->latitude)) * 
-                    sin(radians(latitude)))
-        )";
-
-        //
-        return Room::select('*')
-                    //It makes new attribute "as" distance.
-                    //We can retrieve distance from this instance ($room->distance)
-                    ->selectRaw("$prepare AS distance")
-                    ->having("distance", "<", $radius)
-                    ->where('id', '!=', $this->id)
-                    ->orderBy("distance")
-                    ->get();
     }
 
     public function totalRate()
@@ -87,4 +68,89 @@ class Room extends Model
         $rate = $this->reviews()->where('reviewer_type', 'guest')->avg('star');
         return round($rate, 0); 
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', 1);
+    }
+
+    public function scopeNear($query, $radius, $latitude, $longtitude)
+    {
+        $prepare = "(6378 * acos(
+                    cos(radians($latitude)) * 
+                    cos(radians(latitude)) * 
+                    cos(radians(longtitude) - radians($longtitude)) + 
+                    sin(radians($latitude)) * 
+                    sin(radians(latitude)))
+        )";
+
+        return $query->select('*')
+                    //It makes new attribute "as" distance.
+                    //We can retrieve distance from this instance ($room->distance)
+                    ->selectRaw("$prepare AS distance")
+                    ->having("distance", "<", $radius)
+                    ->where('id', '!=', $this->id)
+                    ->orderBy("distance");
+    }
+
+    public function scopeDate($query)
+    {
+
+    }
+
+    public function scopeMinPrice($query, $price)
+    {
+        return $query->where('price', '>=', $price);
+    }
+
+    public function scopeMaxPrice($query, $price)
+    {
+        return $query->where('price', '<=', $price);
+    }
+
+    public function scopeRoomTypes($query, $room_types)
+    {
+        return $query->whereIn('room_type', $room_types);
+    }
+
+    public function scopeAccomodate($query, $accomodate)
+    {
+        return $query->where('accomodate', $accomodate);
+    }
+
+    public function scopeBedroom($query, $bedroom)
+    {
+        return $query->where('bedroom', $bedroom);
+    }
+
+    public function scopeBathroom($query, $bathroom)
+    {
+        return $query->where('bathroom', $bathroom);
+    }
+
+    public function scopeHasTV($query, $has_tv)
+    {
+        return $query->where('has_tv', $has_tv);
+    }
+
+    public function scopeHasKitchen($query, $has_kitchen)
+    {
+        return $query->where('has_kitchen', $has_kitchen);
+    }
+
+    public function scopeHasInternet($query, $has_internet)
+    {
+        return $query->where('has_internet', $has_internet);
+    }
+
+    public function scopeHasHeating($query, $has_heating)
+    {
+        return $query->where('has_heating', $has_heating);
+    }
+
+    public function scopeHasAirConditioning($query, $has_air_conditioning)
+    {
+        return $query->where('has_air_conditioning', $has_air_conditioning);
+    }
+
 }

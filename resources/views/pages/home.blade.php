@@ -9,30 +9,31 @@
         </div>
     </div>
 
-    <form action="" method="get">
-        @csrf
+    <form action="{{ route('search') }}" method="get">
         <div class="row mb-3">
             <div class="form-group col-md-6">
-                <input type="text" name="address" id="" class="form-control input-height" placeholder="Where are you going?" autocomplete="off">
+                @include('partials.simple_form',[
+                    'name' => 'address',
+                    'placeholder' => 'Where are you going?'
+                ])
             </div>
             <div class="form-group col-md-3">
-                @include('partials.date_form',[
+                @include('partials.simple_form',[
                     'name' => 'checkin',
                     'placeholder' => 'Start Date'
                 ])
             </div>
             <div class="form-group col-md-3">
-                @include('partials.date_form',[
+                @include('partials.simple_form',[
                     'name' => 'checkout',
                     'placeholder' => 'End Date'
                 ])
             </div>
         </div>
-
         <div class="row pb-5 border-bottom d-flex justify-content-center">
-            <a href="{{ route('search') }}" class="btn btn-base btn-size-mini btn-color-main d-flex align-content-center flex-wrap justify-content-center w-25">
-                <span class="h5 mb-0">Search</span>
-            </a>
+            <div class="form-group mx-auto">
+                <button type="submit" class="btn btn-base btn-size-mini btn-color-main px-5">Search rooms</button>
+            </div>
         </div>
     </form>
 

@@ -96,22 +96,22 @@
             <div class="row py-3">
                 <div class="col-12">
                     <h2>Nearbys</h2>
-                    @foreach ($room->near_rooms() as $near_room)
-                        <div class="col-12 col-sm-6 col-lg-4 my-2">
-                            <div class="card">
-                                <img class="card-img-top" src="{{ $near_room->show_photo("medium") }}">
-                                <div class="card-body py-2">
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <h5><a href="{{ route('rooms.show', ['room' => $near_room->id]) }}">{{ $near_room->listing_name }}</a></h5>
-                                            <p>{{ round($near_room->distance, 2) }}km away</p>
-                                        </div>
+                </div>
+                @foreach ($room->near_rooms() as $near_room)
+                    <div class="col-12 col-sm-6 col-lg-4 my-2">
+                        <div class="card">
+                            <img class="card-img-top" src="{{ $near_room->show_photo("medium") }}">
+                            <div class="card-body py-2">
+                                <div class="row">
+                                    <div class="col-9">
+                                        <h5><a href="{{ route('rooms.show', ['room' => $near_room->id]) }}">{{ $near_room->listing_name }}</a></h5>
+                                        <p>{{ round($near_room->distance, 2) }}km away</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    @endforeach
-                </div>
+                    </div>
+                @endforeach
             </div>
 
         </div>
