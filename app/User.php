@@ -86,12 +86,14 @@ class User extends Authenticatable implements MustVerifyEmail
     public function averageRate_from_guest()
     {
         $rate = $this->reviews_from_guest()->avg('star');
+
         return round($rate, 0); 
     }
 
     public function averageRate_from_host()
     {
         $rate = $this->reviews_from_host()->avg('star');
+        
         return round($rate, 0); 
     }
 }

@@ -27,6 +27,7 @@
                                             'label' => 'Home Type',
                                             'name' => 'home_type',
                                             'required' => "required",
+                                            'disabled' => "disabled",
                                             'selected' => $room->home_type,
                                             'options' => ['Apartment', 'House', 'Bed & Breakfast']
                                         ])
@@ -36,6 +37,7 @@
                                             'label' => 'Room Type',
                                             'name' => 'room_type',
                                             'required' => "required",
+                                            'disabled' => "disabled",
                                             'selected' => $room->room_type,
                                             'options' => ['Entire', 'Private', 'Shared']
                                         ])
@@ -45,6 +47,7 @@
                                             'label' => 'Accomodate',
                                             'name' => 'accomodate',
                                             'required' => "required",
+                                            'disabled' => "disabled",
                                             'selected' => $room->accomodate,
                                             'options' => [1, 2, 3, 4]
                                         ])
@@ -54,6 +57,7 @@
                                             'label' => 'Bedrooms',
                                             'name' => 'bedroom',
                                             'required' => "required",
+                                            'disabled' => "disabled",
                                             'selected' => $room->bedroom,
                                             'options' => [1, 2, 3, 4]
                                         ])
@@ -63,6 +67,7 @@
                                             'label' => 'Bathrooms',
                                             'name' => 'bathroom',
                                             'required' => "required",
+                                            'disabled' => "disabled",
                                             'selected' => $room->bathroom,
                                             'options' => [1, 2, 3, 4]
                                         ])

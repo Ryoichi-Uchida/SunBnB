@@ -21,6 +21,5 @@ class Review extends Model
     public function reviewer()
     {
          return $this->belongsTo('App\user', 'reviewer_id');
-        
     }
 }

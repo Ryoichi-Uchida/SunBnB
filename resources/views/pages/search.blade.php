@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container my-5">
+
     <div class="row">
             
         <div class="col-12 col-lg-9">
@@ -10,10 +11,19 @@
             </div>
 
             <form action="" method="get" id="search-space" class="hide">
-                @csrf
+                
+                <div class="form-group row border-bottom py-3">
+                    <div class="col-12 my-1">
+                        @include('partials.simple_form',[
+                            'name' => 'address',
+                            'placeholder' => 'Where are you going?'
+                        ])
+                    </div>
+                </div>
+
                 <div class="form-group row border-bottom py-3">
                     <div class="col-12 col-md-6 my-1">
-                        <label for="">Price Range:</label>
+                        <label for="">Price range with many rooms:<br>(You can also manually set over $ 1000.) </label>
                         <div id="slider"></div>
                     </div>
                     <div class="col-6 col-md-3 my-1 form-group">
@@ -34,13 +44,13 @@
         
                 <div class="row border-bottom py-3">
                     <div class="form-group col-md-6">
-                        @include('partials.date_form',[
+                        @include('partials.simple_form',[
                             'name' => 'checkin',
                             'placeholder' => 'Start Date'
                         ])
                     </div>
                     <div class="form-group col-md-6">
-                        @include('partials.date_form',[
+                        @include('partials.simple_form',[
                             'name' => 'checkout',
                             'placeholder' => 'End Date'
                         ])
@@ -74,7 +84,8 @@
                             'label' => 'Accomodate',
                             'name' => 'accomodate',
                             'required' => "",
-                            'selected' => "",
+                            'disabled' => "",
+                            'selected' => session('accomodate'),
                             'options' => [1, 2, 3, 4]
                         ])
                     </div>
@@ -83,7 +94,8 @@
                             'label' => 'Bedrooms',
                             'name' => 'bedroom',
                             'required' => "",
-                            'selected' => "",
+                            'disabled' => "",
+                            'selected' => session('bedroom'),
                             'options' => [1, 2, 3, 4]
                         ])
                     </div>
@@ -92,7 +104,8 @@
                             'label' => 'Bathrooms',
                             'name' => 'bathroom',
                             'required' => "",
-                            'selected' => "",
+                            'disabled' => "",
+                            'selected' => session('bathroom'),
                             'options' => [1, 2, 3, 4]
                         ])
                     </div>
@@ -103,35 +116,35 @@
                         @include('partials.amenity_choice', [
                             'name' => 'has_tv',
                             'view' => 'TV',
-                            'checked' => ""
+                            'checked' => session('has_tv')
                         ])
                     </div>
                     <div class="form-group col-6 col-lg-4">
                         @include('partials.amenity_choice', [
                             'name' => 'has_kitchen',
                             'view' => 'Kitchen',
-                            'checked' => ""
+                            'checked' => session('has_kitchen')
                         ])
                     </div>
                     <div class="form-group col-6 col-lg-4">
                         @include('partials.amenity_choice', [
                             'name' => 'has_internet',
                             'view' => 'Internet',
-                            'checked' => ""
+                            'checked' => session('has_internet')
                         ])
                     </div>
                     <div class="form-group col-6 col-lg-4">
                         @include('partials.amenity_choice', [
                             'name' => 'has_heating',
                             'view' => 'Heating',
-                            'checked' => ""
+                            'checked' => session('has_heating')
                         ])
                     </div>
                     <div class="form-group col-6 col-lg-4">
                         @include('partials.amenity_choice', [
                             'name' => 'has_air_conditioning',
                             'view' => 'Air Conditioning',
-                            'checked' => ""
+                            'checked' => session('has_air_conditioning')
                         ])
                     </div>
                 </div>
@@ -143,6 +156,12 @@
                 </div>
         
             </form>
+
+            <div class="row">
+                @foreach ($rooms as $room)
+                    @include('partials.room_card')
+                @endforeach
+            </div>
         
         </div>
         <div class="col-12 col-lg-3">
@@ -168,6 +187,17 @@
             minDate: 0,
             maxDate: '3m',
         });
+    });
+</script>
+
+{{-- For Raty --}}
+<script>
+    $('.star').raty({
+        path: '/images',
+        score: function(){
+            $(this).attr('data-score');
+        },
+        readOnly: true
     });
 </script>
 

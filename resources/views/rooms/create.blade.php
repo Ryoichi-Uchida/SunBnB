@@ -21,6 +21,7 @@
                                     'label' => 'Home Type',
                                     'name' => 'home_type',
                                     'required' => "required",
+                                    'disabled' => "disabled",
                                     'selected' => "",
                                     'options' => ['Apartment', 'House', 'Bed & Breakfast']
                                 ])
@@ -30,6 +31,7 @@
                                     'label' => 'Room Type',
                                     'name' => 'room_type',
                                     'required' => "required",
+                                    'disabled' => "disabled",
                                     'selected' => "",
                                     'options' => ['Entire', 'Private', 'Shared']
                                 ])
@@ -39,6 +41,7 @@
                                     'label' => 'Accomodate',
                                     'name' => 'accomodate',
                                     'required' => "required",
+                                    'disabled' => "disabled",
                                     'selected' => "",
                                     'options' => [1, 2, 3, 4]
                                 ])
@@ -48,6 +51,7 @@
                                     'label' => 'Bedrooms',
                                     'name' => 'bedroom',
                                     'required' => "required",
+                                    'disabled' => "disabled",
                                     'selected' => "",
                                     'options' => [1, 2, 3, 4]
                                 ])
@@ -57,6 +61,7 @@
                                     'label' => 'Bathrooms',
                                     'name' => 'bathroom',
                                     'required' => "required",
+                                    'disabled' => "disabled",
                                     'selected' => "",
                                     'options' => [1, 2, 3, 4]
                                 ])
