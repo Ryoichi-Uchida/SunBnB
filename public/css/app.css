@@ -10824,8 +10824,23 @@ a.text-dark:focus {
   width: 100px;
 }
 
+.search .filter {
+  padding: 10px 400px 10px 20px;
+  overflow: scroll;
+  height: 100%;
+}
+
+.search .map {
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  width: 450px;
+  height: 100%;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  z-index: 1;
 }
 

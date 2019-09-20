@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container my-5">
+<div class="container my-5 search">
 
-    <div class="row">
+    <div class="row filter">
             
         <div class="col-12 col-lg-9">
             <div class="col-12 text-center">
@@ -30,14 +30,16 @@
                         @include('partials.label_form',[
                             'name' => 'min_price',
                             'text' => 'Min Price:',
-                            'type' => 'text'
+                            'type' => 'text',
+                            
                         ])
                     </div>
                     <div class="col-6 col-md-3 my-1 form-group">
                         @include('partials.label_form',[
                             'name' => 'max_price',
                             'text' => 'Max Price:',
-                            'type' => 'text'
+                            'type' => 'text',
+
                         ])
                     </div>
                 </div>
@@ -164,10 +166,14 @@
             </div>
         
         </div>
-        <div class="col-12 col-lg-3">
-        </div>
+        {{-- <div class="col-12 col-lg-3">
+            <div id="map" class="w-100 h-100"></div>
+        </div> --}}
 
+        
     </div>
+    
+    <div id="map" class="h-100 map"></div>
 
 </div>
 @endsection
@@ -203,8 +209,23 @@
 
 {{-- For Slider --}}
 <script>
+    // $(function(){
+    //     $('#slider').slider();
+    // });
+
     $(function(){
-        $('#slider').slider();
+        $('#min_price').val('100');
+        $('#max_price').val('500');
+        $('#slider').slider({
+            range :true,
+            min:0,
+            max:1000,
+            values:[100,500],
+            slide: function(event, pointers){
+                $('#min_price').val(pointers.values[0]);
+                $('#max_price').val(pointers.values[1]);
+            }
+        });
     });
 </script>
 
@@ -222,5 +243,46 @@
             }
         });
     });
+</script>
+
+{{-- For Google map --}}
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.googlemaps.api_key') }}&libraries=places"></script>
+<script>
+    $(function(){
+        $('#address').geocomplete();
+    })
+</script>
+<script>
+    function initialize() {
+        var location = {lat: 10.315699 , lng: 123.88547 };
+
+        @if($rooms->count() > 0)
+            location = {lat: {{ $rooms->first()->latitude }}, lng: {{ $rooms->first()->longtitude }} };
+        @endif
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: location,
+            zoom: 12
+        });
+
+        var marker, infoWindow;
+
+        @foreach($rooms as $room)
+
+            marker = new google.maps.Marker({
+                position: { lat: {{ $room->latitude }}, lng: {{ $room->longtitude }} },
+                map: map
+            });
+
+            // Adding window to show room's photo
+            var infoWindow = new google.maps.InfoWindow({
+                content: "<div id='content'>$" + {{ $room->price }} + "</div>"
+            });
+        
+            infoWindow.open(map, marker);
+
+        @endforeach
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 @endsection

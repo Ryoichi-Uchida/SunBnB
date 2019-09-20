@@ -52,16 +52,24 @@
         <div class="col-12">
             <h1>Cities</h1>
         </div>
-        @include('partials.city_image', ['image' => 'LA.jpg'])
-        @include('partials.city_image', ['image' => 'LD.jpg'])
-        @include('partials.city_image', ['image' => 'MI.jpg'])
-        @include('partials.city_image', ['image' => 'PR.jpg'])
+        @include('partials.city_image', ['image' => 'LA.jpg', 'path' => '/search?address=Los+Angels'])
+        @include('partials.city_image', ['image' => 'LD.jpg', 'path' => ''])
+        @include('partials.city_image', ['image' => 'MI.jpg', 'path' => ''])
+        @include('partials.city_image', ['image' => 'PR.jpg', 'path' => ''])
     </div>
 
 </div>
 @endsection
 
 @section('script')
+
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.googlemaps.api_key') }}&libraries=places"></script>
+<script>
+    $(function(){
+        $('#address').geocomplete();
+    })
+</script>
+
 
 {{-- For Datepicker --}}
 <script>
