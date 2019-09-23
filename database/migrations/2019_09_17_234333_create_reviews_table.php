@@ -54,7 +54,7 @@ class CreateReviewsTable extends Migration
     public function down()
     {
         Schema::table('reviews', function (Blueprint $table) {
-            $table->dropForeign(['reviewer_id', 'reviewed_id', 'room_id', 'user_room_id']);
+            $table->dropForeign(['reviewer_id', 'reviewed_id', 'room_id', 'reservation_id']);
         });
 
         Schema::dropIfExists('reviews');

@@ -18,11 +18,6 @@ class PageController extends Controller
 
     public function search(Request $request)
     {
-        // dd($request->all());
-        // $request->session()->put('address', $request->address);
-        
-        // dd($request->session()->all());
-
         if($request->query()){
             $rooms  = Room::active();
             

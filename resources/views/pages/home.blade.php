@@ -63,6 +63,7 @@
 
 @section('script')
 
+{{-- For Geocomplete --}}
 <script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.googlemaps.api_key') }}&libraries=places"></script>
 <script>
     $(function(){

@@ -111,10 +111,10 @@
                         // Adding disabled attr to publish button.
                         $("#disabled").prop('disabled', true);
                     }
-                    alert(data.message);
+                    toastr.success(data.message);
                 },
                 failed: function(data){
-                    alert(data.message);
+                    toastr.error(data.message);
                 },
             });
         });

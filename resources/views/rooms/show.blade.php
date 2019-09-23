@@ -283,7 +283,7 @@
                         $('#summary').slideDown();
                         $('#reserve').prop('disabled', false);
                         $('#nights').text(nights);
-                        $('#total').text(total);
+                        $('#total').text('$ '+total);
                         
                     // If request causes conflict, you can't proceed next step.
                     }else{

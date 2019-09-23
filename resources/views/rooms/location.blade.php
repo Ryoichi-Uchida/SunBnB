@@ -24,7 +24,7 @@
                                 <div class="row d-flex justify-content-center">
                                     <div class="form-group col-12 col-md-10">
                                         <label for="address" class="">Address</label>
-                                        <input type="text" name="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') ?? $room->address }}" required>
+                                        <input type="text" name="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" value="{{ old('address') ?? $room->address }}" id="address" required>
                                         @include('partials.error_message', ['error' => 'address'])
                                     </div>
                                 </div>
@@ -39,4 +39,16 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('script')
+
+{{-- For Geocomplete --}}
+<script src="https://maps.googleapis.com/maps/api/js?key={{ config('services.googlemaps.api_key') }}&libraries=places"></script>
+<script>
+    $(function(){
+        $('#address').geocomplete();
+    })
+</script>
+
 @endsection

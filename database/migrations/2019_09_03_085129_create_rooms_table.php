@@ -27,11 +27,11 @@ class CreateRoomsTable extends Migration
             $table->string('address')->nullable();
             $table->double('longtitude', 9, 6)->nullable();
             $table->double('latitude', 8, 6)->nullable();
-            $table->boolean('has_tv')->nullable();
-            $table->boolean('has_kitchen')->nullable();
-            $table->boolean('has_internet')->nullable();
-            $table->boolean('has_heating')->nullable();
-            $table->boolean('has_air_conditioning')->nullable();
+            $table->boolean('has_tv')->default(0);
+            $table->boolean('has_kitchen')->default(0);
+            $table->boolean('has_internet')->default(0);
+            $table->boolean('has_heating')->default(0);
+            $table->boolean('has_air_conditioning')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')

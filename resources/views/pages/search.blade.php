@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container my-5 search">
-
-    <div class="row filter">
-            
-        <div class="col-12 col-lg-9">
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12 col-lg-12">
             <div class="col-12 text-center">
                 <button type="" class="btn btn-base btn-size-mini btn-color-spot mb-3 px-5" id="filter">More filters <i class="fa fa-chevron-down" id="slide-mark"></i></button>
             </div>
@@ -31,7 +29,6 @@
                             'name' => 'min_price',
                             'text' => 'Min Price:',
                             'type' => 'text',
-                            
                         ])
                     </div>
                     <div class="col-6 col-md-3 my-1 form-group">
@@ -39,7 +36,6 @@
                             'name' => 'max_price',
                             'text' => 'Max Price:',
                             'type' => 'text',
-
                         ])
                     </div>
                 </div>
@@ -158,23 +154,20 @@
                 </div>
         
             </form>
-
-            <div class="row">
+            
+            <div class="row py-4">
+                <div class="col-12">
+                    <h1>Search Results</h1>
+                </div>
+                <div class="col-12 py-3">
+                    <div id="map" class="w-100 map-height""></div>
+                </div>
                 @foreach ($rooms as $room)
                     @include('partials.room_card')
                 @endforeach
             </div>
-        
         </div>
-        {{-- <div class="col-12 col-lg-3">
-            <div id="map" class="w-100 h-100"></div>
-        </div> --}}
-
-        
     </div>
-    
-    <div id="map" class="h-100 map"></div>
-
 </div>
 @endsection
 
@@ -209,10 +202,6 @@
 
 {{-- For Slider --}}
 <script>
-    // $(function(){
-    //     $('#slider').slider();
-    // });
-
     $(function(){
         $('#min_price').val('100');
         $('#max_price').val('500');
@@ -267,6 +256,7 @@
 
         var marker, infoWindow;
 
+        // Showing each rooms place & price.
         @foreach($rooms as $room)
 
             marker = new google.maps.Marker({
@@ -274,9 +264,9 @@
                 map: map
             });
 
-            // Adding window to show room's photo
+            // Adding window to show room's price
             var infoWindow = new google.maps.InfoWindow({
-                content: "<div id='content'>$" + {{ $room->price }} + "</div>"
+                content: "<div id='content'>{{ $room->listing_name }} ($" + {{ $room->price }} + ")</div>"
             });
         
             infoWindow.open(map, marker);
