@@ -93,10 +93,14 @@ class Room extends Model
                     ->orderBy("distance");
     }
 
-    public function scopeDate($query)
+    public function scopeDate($query, $checkin, $checkout)
     {
-
+        return $query->whereHas('reservations', function($q) use($checkin, $checkout){
+                    $q->Where('checkout_at', '<=', $checkin)
+                        ->orWhere('checkin_at', '>=', $checkout);
+        });
     }
+    
 
     public function scopeMinPrice($query, $price)
     {

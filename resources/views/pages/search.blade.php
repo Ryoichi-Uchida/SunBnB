@@ -8,7 +8,7 @@
                 <button type="" class="btn btn-base btn-size-mini btn-color-spot mb-3 px-5" id="filter">More filters <i class="fa fa-chevron-down" id="slide-mark"></i></button>
             </div>
 
-            <form action="" method="get" id="search-space" class="hide">
+            <form action="{{ route('search') }}" method="get" id="search-space" class="hide">
                 
                 <div class="form-group row border-bottom py-3">
                     <div class="col-12 my-1">
@@ -28,14 +28,12 @@
                         @include('partials.label_form',[
                             'name' => 'min_price',
                             'text' => 'Min Price:',
-                            'type' => 'text',
                         ])
                     </div>
                     <div class="col-6 col-md-3 my-1 form-group">
                         @include('partials.label_form',[
                             'name' => 'max_price',
                             'text' => 'Max Price:',
-                            'type' => 'text',
                         ])
                     </div>
                 </div>
@@ -156,15 +154,22 @@
             </form>
             
             <div class="row py-4">
-                <div class="col-12">
-                    <h1>Search Results</h1>
-                </div>
-                <div class="col-12 py-3">
-                    <div id="map" class="w-100 map-height""></div>
-                </div>
-                @foreach ($rooms as $room)
-                    @include('partials.room_card')
-                @endforeach
+                @if (!isset($rooms[0]))
+                    <div class="col-12 py-3 text-center text-main">
+                        <h1>I'm sorry...</h1>
+                        <h1>No rooms match your search</h1>
+                    </div>
+                @else
+                    <div class="col-12">
+                        <h1>Search Results</h1>
+                    </div>
+                    <div class="col-12 py-3">
+                        <div id="map" class="w-100 map-height"></div>
+                    </div>
+                    @foreach ($rooms as $room)
+                        @include('partials.room_card')
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
@@ -203,13 +208,11 @@
 {{-- For Slider --}}
 <script>
     $(function(){
-        $('#min_price').val('100');
-        $('#max_price').val('500');
         $('#slider').slider({
             range :true,
             min:0,
             max:1000,
-            values:[100,500],
+            values:[300,700],
             slide: function(event, pointers){
                 $('#min_price').val(pointers.values[0]);
                 $('#max_price').val(pointers.values[1]);

@@ -53,9 +53,9 @@
             <h1>Cities</h1>
         </div>
         @include('partials.city_image', ['image' => 'LA.jpg', 'path' => '/search?address=Los+Angels'])
-        @include('partials.city_image', ['image' => 'LD.jpg', 'path' => ''])
-        @include('partials.city_image', ['image' => 'MI.jpg', 'path' => ''])
-        @include('partials.city_image', ['image' => 'PR.jpg', 'path' => ''])
+        @include('partials.city_image', ['image' => 'LD.jpg', 'path' => '/search?address=London'])
+        @include('partials.city_image', ['image' => 'MI.jpg', 'path' => '/search?address=Miami'])
+        @include('partials.city_image', ['image' => 'PR.jpg', 'path' => '/search?address=Paris'])
     </div>
 
 </div>
